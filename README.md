@@ -1,13 +1,14 @@
 # Restaurant 
 User Types
-- Customer
-- Cashier
-- Chef
+- Customer ()
+- Cashier ()
+- Chef ()
 
 
 
 # Customer Functionality
-- see, sort, and search menu
+- sort by category and keyword search menu
+- create account
 - order
 - see restaurant locations
 # Cashier Functionality
@@ -25,5 +26,5 @@ User Types
 - HTMl
 - CSS
 - JS
-- SQL
+- MySQL
 - PHP
