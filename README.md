@@ -10,10 +10,10 @@ User Types
 - see, sort, and search menu
 - order
 - see restaurant locations
-# Cashier
+# Cashier Functionality
 - order
 - modify online order
-# Chef
+# Chef Functionality
 - See orders
 - modify orders
 - keep track of inventory
@@ -26,3 +26,4 @@ User Types
 - CSS
 - JS
 - SQL
+- PHP
