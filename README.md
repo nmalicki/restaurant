@@ -1,8 +1,8 @@
 # Restaurant 
 User Types
-- Customer ()
-- Cashier ()
-- Chef ()
+- Customer (Nathan)
+- Cashier (Miles)
+- Chef (Karmjit)
 
 
 
