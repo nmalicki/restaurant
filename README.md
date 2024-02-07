@@ -11,6 +11,7 @@ User Types
 - create account
 - order
 - see restaurant locations
+
 (Concept ui: https://www.figma.com/file/fIFzurDB4VogwqAjVzjnFX/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=0RNIMvFS7N84Ni1S-1)
 # Cashier Functionality
 - order
