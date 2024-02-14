@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     </head>
     <body>
         <!-- A grey horizontal navbar that becomes vertical on small screens -->
-
+        
         <?php
         // put your code here
         ?>
