@@ -3,8 +3,7 @@
         <?php include 'header.php'; ?>
     </head>
     <body>
-        <h1>Public</h1>
-        <p>modified by Nathan</p>
+        <h1>Cashier</h1>
     </body>
 </html>
 <?php
