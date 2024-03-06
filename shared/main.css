@@ -12,22 +12,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     --main:#ffffff;
     --background:#d9d9d9;
     --selected:#989898;
-    --accent:#003aff;
+    --accent:#2c5af2;
+    --text: #000000;
 
 }
 
-body{
-    margin-top: 0;
+html{
+    font-family: Arial, sans-serif;
 }
 
 nav{
     width: 10%;
-    height: 98vh;
+    height: 99vh;
     padding: 5px;
     border-right: 2px solid;
     display: flex;
     flex-direction: column;
     float: left;
+    margin-top: -20px;
+    margin-right: 10px;
     
 }
 
@@ -37,18 +40,55 @@ button{
     border-radius: 35px;
     border: 0px;
     margin-bottom: 5px;
+    background-color: var(--background);
+}
+
+a{
+    text-decoration: none;
+}
+
+a:link, a:visited{
+    color: var(--text);
+}
+
+h1{
+    text-align: center;
 }
 
 #navTop{
     flex-grow: 1;
 }
 
-
-#signIn{
-    background-color: var(--selected);
-    margin-top: 5px;
+#signInButton{
+    background-color: var(--accent);
 }
 
 #signInIsland{
     border-top: 2px solid;  
+    padding-top: 5px;
+}
+
+#signInContainer{
+    width: 65%;
+    height: 80%;
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    display: none;
+    background-color: var(--main);
+    border: solid black 2px;
+    border-radius: 35px;
+    z-index: 0;
+}
+
+#signInContainterClose{
+    width: 30px;
+}
+
+#signOut{
+    display: none;
+}
+
+#toggleDiv{
+    display:flex;
 }
