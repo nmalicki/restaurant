@@ -1,0 +1,64 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 6, 2024, 3:33:54 PM
+    Author     : nmalicki
+*/
+
+#signInContainer{
+    z-index: 0;
+    width: 65%;
+    height: 80%;
+    
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    
+    display: none;
+    
+    background-color: var(--main);
+    border: solid black 2px;
+    border-radius: 35px;
+    
+    padding: 15px;
+}
+
+#signInContainerClose{
+    width: 30px;
+    margin-left: 95%;
+}
+
+#signOut{
+    display: none;
+}
+
+form{
+    padding: 30px;
+}
+
+#toggleDiv{
+    display:flex;
+    background-color: var(--background);
+    border-radius: 35px;
+    width: 40%;
+    
+}
+
+.toggleButton{
+    margin: 0px;
+}
+
+#logInButton{
+    background-color: var(--selected);
+    
+}
+
+#logInForm{
+    display: none;
+}
+
+#registerNames{
+    display: flex;
+}
