@@ -1,6 +1,6 @@
 <html>
     <head>
-        <?php include 'shared/header.php'; ?>
+        <?php include 'header.php'; ?>
         
         <title>Restaurant: Locations</title>
     </head>

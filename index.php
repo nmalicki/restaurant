@@ -5,12 +5,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 -->
 <html>
     <head>
-        <?php include 'shared/header.php'; ?>
+        <?php include 'header.php'; ?>
         
         <title>Restaurant: Home</title>
     </head>
     <body>
+        
         <!-- A grey horizontal navbar that becomes vertical on small screens -->
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
         <?php
         // put your code here
         ?>
