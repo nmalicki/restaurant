@@ -35,7 +35,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 form{
-    padding: 30px;
+    padding: 30px 30%;
+}
+
+label{
+    padding: 0 15px 15px 0;
+}
+
+input{
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 #toggleDiv{
@@ -43,16 +52,21 @@ form{
     background-color: var(--background);
     border-radius: 35px;
     width: 40%;
-    
+    margin: 0 30%;
 }
 
 .toggleButton{
     margin: 0px;
 }
 
-#logInButton{
+#registerButton{
     background-color: var(--selected);
-    
+    margin-bottom: 0;
+}
+
+#signInFormButton{
+    margin-bottom: 0;
+    background-color:var(--background);
 }
 
 #logInForm{
@@ -61,4 +75,32 @@ form{
 
 #registerNames{
     display: flex;
+}
+
+.half{
+    width: 45%;
+}
+
+.left{
+    padding-right: 5%;
+}
+
+.right{
+    padding-left: 5%;
+}
+
+input{
+    height: 25px;
+    border: 0;
+    border-radius: 35px;
+    background-color: var(--background);
+    padding-left: 20px;
+}
+
+.submitButton{
+    background-color: var(--accent);
+    width: 100px;
+    float: right;
+    margin-top: 5px;
+    padding: 0px 15px;
 }
