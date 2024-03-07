@@ -7,6 +7,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : nmalicki
 */
 
+@import url("../customer/signIn.css");
+
 /*Colors*/
 :root{
     --main:#ffffff;
@@ -55,7 +57,7 @@ h1{
     text-align: center;
 }
 
-#navTop{
+#contextMenu{
     flex-grow: 1;
 }
 
@@ -66,29 +68,4 @@ h1{
 #signInIsland{
     border-top: 2px solid;  
     padding-top: 5px;
-}
-
-#signInContainer{
-    width: 65%;
-    height: 80%;
-    position: absolute;
-    bottom: 15%;
-    left: 20%;
-    display: none;
-    background-color: var(--main);
-    border: solid black 2px;
-    border-radius: 35px;
-    z-index: 0;
-}
-
-#signInContainterClose{
-    width: 30px;
-}
-
-#signOut{
-    display: none;
-}
-
-#toggleDiv{
-    display:flex;
 }
