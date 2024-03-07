@@ -15,7 +15,7 @@
     <button id="signInFormButton">Sign In</button>
 </div>
 
-<form id="registerForm" action="registerAction.php" method="POST">
+<form id="registerForm" action="employeeRegisterAction.php" method="POST">
     <div id="registerNames">
         <div class="half left">
             <label>Given Name</label>

@@ -16,6 +16,6 @@
     </div>
     
     <div id="signInContainer">
-        <?php include 'cashier/signInPopUp.php'; ?>
+        <?php include 'customer/signInPopUp.php'; ?>
     </div>
 </nav>

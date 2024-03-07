@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : nmalicki
 */
 
-@import url("../cashier/signIn.css");
+@import url("../customer/signIn.css");
 
 /*Colors*/
 :root{
