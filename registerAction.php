@@ -1,19 +1,21 @@
 <?php
-include "header.php";
-require "shared/dbConnect.php";
+require "dbConnect.php";
 
 $givenName = $_POST["givenName"];
 $familyName = $_POST["familyName"];
-$email = $_POST["email"];
+$userName = $_POST["userName"];
 $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$position = $_POST["position"];
 
-$sql = "insert into customer VALUES (0, '$email', '$password', '$givenName', '$familyName', 0);";
+$sql = "insert into employee VALUES (0, '$userName', '$password', '$givenName', '$familyName', '$position');";
 
 
 try {
     $result = modifyDB($sql);
-    echo "<h1 class= 'logInFeedback'>Registration Successful</h1>";
-    //echo "<a class='logLink backLink' href='index.php'>< Home</a>";
+    echo "<h1 class= 'logInFeedback'>Registration Successful Welcome $position $givenName</h1>";
+    header("Location: welcome_chef.php?givenName=" . urlencode($givenName));
+    exit();
+    
 } catch (Exception $e) {
     $error = $e->getMessage();
     if (fnmatch("Duplicate entry '*' for key 'email'", $error) == 1) {
