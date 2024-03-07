@@ -10,8 +10,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <title>Restaurant: Home</title>
     </head>
     <body>
-        <!-- A grey horizontal navbar that becomes vertical on small screens -->
         
+        <!-- A grey horizontal navbar that becomes vertical on small screens -->
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
         <?php
         // put your code here
         ?>
