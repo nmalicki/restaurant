@@ -8,14 +8,13 @@
 ?>
 
 
-<button id="signInContainerClose" onclick="closePopUp('signInContainer')">X</button>
-<p><center>Employee Login</center></p>
+
+<p><center>Employee Registration</center></p>
 <div id="toggleDiv">
-    <button id="registerButton">Register</button>
-    <button id="signInFormButton">Sign In</button>
+ 
 </div>
 
-<form id="registerForm" action="employeeRegisterAction.php" method="POST">
+<form style="text-align: center"id="registerForm" action="employeeRegisterAction.php" method="POST">
     <div id="registerNames">
         <div class="half left">
             <label>Given Name</label>
@@ -39,26 +38,24 @@
     <label>Confirm password</label>
     <br>
     <input type="password"></input>
-    <label>Position</label>
-    <br>
-    <input name="position"></input>
+
     <br>
     <br>
-    <input type="submit" class="submitButton"></input>
+
+    <p style="text-align: center">Position</p>
+<div class="w3-dropdown-content w3-bar-block w3-border">
+<input id="chef" class="w3-radio" type="radio" name="position" value="chef" checked="">
+<label>Chef</label>
+<input id="cashier" class="w3-radio" type="radio" name="position" value="cashier">
+<label>Cashier</label>
+<br>
+<br>
+<input type="submit" class="submitButton"></input>
+</div>
+</form>
 </form>
 
-<form id="logInForm">
-    <label>email</label>
-    <br>
-    <input></input>
-    <br>
-    <label>Password</label>
-    <br>
-    <input></input>
-    <br>
-    <br>
-    <input type="submit" class="submitButton"></input>
-</form>
+
 
 
 

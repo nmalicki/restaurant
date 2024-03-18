@@ -12,9 +12,15 @@ $sql = "insert into employee VALUES (0, '$userName', '$password', '$givenName', 
 
 try {
     $result = modifyDB($sql);
-    echo "<h1 class= 'logInFeedback'>Registration Successful</h1>";
-    //echo "<a class='logLink backLink' href='index.php'>< Home</a>";
-    
+    echo "<h1 class= 'logInFeedback'>Registration Successful Welcome $position $givenName</h1>";
+    if ($position == "cashier" ){
+    header("Location: cashierWelcome.php?givenName=" . urlencode($givenName) );
+    }
+    else{
+        header("Location: chefTest.php?givenName=" . urlencode($givenName) );
+    }
+    exit();
+   
 } catch (Exception $e) {
     $error = $e->getMessage();
     if (fnmatch("Duplicate entry '*' for key 'email'", $error) == 1) {
