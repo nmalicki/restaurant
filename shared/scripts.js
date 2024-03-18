@@ -10,3 +10,7 @@ function signInPopUp(){
 function closePopUp(target){
     document.getElementById(target).style.display = "none";
 }
+
+function signInResgisterToggle(){
+    
+}
