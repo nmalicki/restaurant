@@ -1,5 +1,5 @@
 <?php
-require "dbConnect.php";
+require "../dbConnect.php";
 
 $givenName = $_POST["givenName"];
 $familyName = $_POST["familyName"];
