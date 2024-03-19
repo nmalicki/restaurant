@@ -1,5 +1,5 @@
 <?php
-require "dbConnect.php";
+require "shared/dbConnect.php";
 
 $givenName = $_POST["givenName"];
 $familyName = $_POST["familyName"];
@@ -13,7 +13,6 @@ try {
     $result = modifyDB($sql);
     echo "<h1 class= 'logInFeedback'>Registration Successful</h1>";
     //echo "<a class='logLink backLink' href='index.php'>< Home</a>";
-    
 } catch (Exception $e) {
     $error = $e->getMessage();
     if (fnmatch("Duplicate entry '*' for key 'email'", $error) == 1) {
