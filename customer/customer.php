@@ -1,3 +1,13 @@
+<html>
+    <head>
+        <?php include 'header.php'; ?>
+    </head>
+    <body>
+        <h1>Customer</h1>
+        <p>Modified by Nathan</p>
+
+    </body>
+</html>
 <?php
 
 /* 
@@ -5,7 +15,3 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 
-//connect to db
-//check if email is linked to an account
-//send to new page with new form
-//submit password change to db
