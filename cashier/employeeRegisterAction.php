@@ -1,5 +1,5 @@
 <?php
-require "../dbConnect.php";
+require "../shared/dbConnect.php";
 
 $givenName = $_POST["givenName"];
 $familyName = $_POST["familyName"];
@@ -14,10 +14,10 @@ try {
     $result = modifyDB($sql);
     echo "<h1 class= 'logInFeedback'>Registration Successful Welcome $position $givenName</h1>";
     if ($position == "cashier" ){
-    header("Location: cashierWelcome.php?givenName=" . urlencode($givenName) );
+    header("Location: ../cashierWelcome.php?givenName=" . urlencode($givenName) );
     }
     else{
-        header("Location: chefTest.php?givenName=" . urlencode($givenName) );
+        header("Location: ../welcomeChef.php?givenName=" . urlencode($givenName) );
     }
     exit();
    

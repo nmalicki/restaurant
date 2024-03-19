@@ -14,7 +14,7 @@
  
 </div>
 
-<form style="text-align: center"id="registerForm" action="employeeRegisterAction.php" method="POST">
+<form style="text-align: center" id="registerForm" action="cashier/employeeRegisterAction.php" method="POST">
     <div id="registerNames">
         <div class="half left">
             <label>Given Name</label>
