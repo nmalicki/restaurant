@@ -1,0 +1,106 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 6, 2024, 3:33:54 PM
+    Author     : nmalicki
+*/
+
+#signInContainer{
+    z-index: 0;
+    width: 65%;
+    height: 80%;
+    
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    
+    display: none;
+    
+    background-color: var(--main);
+    border: solid black 2px;
+    border-radius: 35px;
+    
+    padding: 15px;
+}
+
+#signInContainerClose{
+    width: 30px;
+    margin-left: 95%;
+}
+
+#signOut{
+    display: none;
+}
+
+form{
+    padding: 30px 30%;
+}
+
+label{
+    padding: 0 15px 15px 0;
+}
+
+input{
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#toggleDiv{
+    display:flex;
+    background-color: var(--background);
+    border-radius: 35px;
+    width: 40%;
+    margin: 0 30%;
+}
+
+.toggleButton{
+    margin: 0px;
+}
+
+#registerButton{
+    background-color: var(--selected);
+    margin-bottom: 0;
+}
+
+#signInFormButton{
+    margin-bottom: 0;
+    background-color:var(--background);
+}
+
+#logInForm{
+    display: none;
+}
+
+#registerNames{
+    display: flex;
+}
+
+.half{
+    width: 45%;
+}
+
+.left{
+    padding-right: 5%;
+}
+
+.right{
+    padding-left: 5%;
+}
+
+input{
+    height: 25px;
+    border: 0;
+    border-radius: 35px;
+    background-color: var(--background);
+    padding-left: 20px;
+}
+
+.submitButton{
+    background-color: var(--accent);
+    width: 100px;
+    float: right;
+    margin-top: 5px;
+    padding: 0px 15px;
+}
