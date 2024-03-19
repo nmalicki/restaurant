@@ -3,7 +3,7 @@
         <?php include 'header.php'; ?>
     </head>
     <body>
-        <h1>Cashier Test</h1>
+        <h1>Cashier</h1>
     </body>
 </html>
 <?php
