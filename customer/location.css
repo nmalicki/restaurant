@@ -11,6 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     margin-left: 15%;
     height: 30%;
     width: 20%;
+    padding-top: 1%;
     background-color: var(--background);
 }
 
@@ -19,4 +20,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     height: 60%;
     margin: 5%;
     background-color: black;
+}
+
+.mapFallback{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

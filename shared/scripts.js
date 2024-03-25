@@ -29,13 +29,9 @@ function signInResgisterToggle(s){
         registerButton.style.backgroundColor = "#989898";
         signInButton.style.backgroundColor = "#d9d9d9";
     }
-    
-    
 }
 
 function getUserLocation(){
-    console.log("Anything");
-    /*
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position.coords.latitude, position.coords.longitude);
@@ -43,10 +39,8 @@ function getUserLocation(){
     } else {
         console.log("Fail");
     }
-     *
-     */
 }
 
-function locationDOMMaker(){
-
+function locationElementMaker(){
+    
 }
