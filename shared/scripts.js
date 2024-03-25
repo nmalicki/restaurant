@@ -14,3 +14,21 @@ function closePopUp(target){
 function signInResgisterToggle(){
     
 }
+
+function getUserLocation(){
+    console.log("Anything");
+    /*
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position.coords.latitude, position.coords.longitude);
+        });
+    } else {
+        console.log("Fail");
+    }
+     *
+     */
+}
+
+function locationDOMMaker(){
+
+}

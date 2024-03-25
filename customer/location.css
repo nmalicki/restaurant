@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 25, 2024, 11:42:17 AM
+    Author     : nmalicki
+*/
+
+.locationDiv {
+    margin-left: 15%;
+    height: 30%;
+    width: 20%;
+    background-color: var(--background);
+}
+
+.locationMap{
+    width: 90%;
+    height: 60%;
+    margin: 5%;
+    background-color: black;
+}

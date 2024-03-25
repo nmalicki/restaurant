@@ -1,4 +1,5 @@
 <?php
+include "header.php";
 require "shared/dbConnect.php";
 
 $givenName = $_POST["givenName"];
@@ -17,7 +18,7 @@ try {
     $error = $e->getMessage();
     if (fnmatch("Duplicate entry '*' for key 'email'", $error) == 1) {
         echo "<h1 class= 'logInFeedback'>Username already in use</h1>";
-        echo "<a class='logLink backLink' href='logIn.php'>< Back</a>";
+        echo "<a class='logLink backLink' href='index.php'>< Back</a>";
     } else {
         echo "Other error: $error \n";
     }
