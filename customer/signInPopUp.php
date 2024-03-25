@@ -10,8 +10,8 @@
 
 <button id="signInContainerClose" onclick="closePopUp('signInContainer')">X</button>
 <div id="toggleDiv">
-    <button id="registerButton">Register</button>
-    <button id="signInFormButton">Sign In</button>
+    <button id="registerButton" onclick="signInResgisterToggle('r')">Register</button>
+    <button id="signInFormButton" onclick="signInResgisterToggle('s')">Sign In</button>
 </div>
 
 <form id="registerForm" action="registerAction.php" method="POST">
@@ -42,17 +42,20 @@
     <input type="submit" class="submitButton"></input>
 </form>
 
-<form id="logInForm">
-    <label>email</label>
+<form id="signInForm" action="signInAction.php" method="POST">
+    <label>Email</label>
     <br>
-    <input></input>
+    <input name="email"></input>
     <br>
     <label>Password</label>
     <br>
-    <input></input>
+    <input name="password" type="password"></input>
     <br>
     <br>
     <input type="submit" class="submitButton"></input>
+    <br>
+    <br>
+    <a href="forgotPassword.php">Forgot Password?</a>
 </form>
 
 

@@ -6,12 +6,12 @@
 
 <nav id="navBar">
     <div id="contextMenu">
-        <h1><a href="index.php">Restaurant</a></h1>
+        <h1><a class="buttonLink" href="index.php">Restaurant</a></h1>
         <button>Test 1</button>
         <button>Test 2</button>
     </div>
     <div id="signInIsland">
-        <button><a href="locations.php">Locations</a></button>
+        <button><a class= "buttonLink" href="locations.php">Locations</a></button>
         <button id="signInButton" onclick="signInPopUp()">Sign In</button>
         <button id="signOut"> Sign Out</button>
     </div>
@@ -20,8 +20,3 @@
         <?php include 'customer/signInPopUp.php'; ?>
     </div>
 </nav>
-
-<script>
-    console.log("Test");
-    //getUserLocation();
-</scirpt>
