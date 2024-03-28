@@ -21,3 +21,6 @@
 </nav>
 
 <script>getUserLocation();</script>
+<?php 
+    //pass js location information to php
+?>

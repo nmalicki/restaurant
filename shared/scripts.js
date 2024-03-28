@@ -35,6 +35,8 @@ function getUserLocation(){
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position.coords.latitude, position.coords.longitude);
+            let userLat = position.coords.latitude;
+            let userLong = position.coords.Longitude;
         });
     } else {
         console.log("Fail");
@@ -42,5 +44,6 @@ function getUserLocation(){
 }
 
 function locationElementMaker(){
+    // url += apiKey + "&q=" + dbUrl
     
 }
