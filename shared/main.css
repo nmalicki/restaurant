@@ -63,7 +63,7 @@ h1{
     flex-grow: 1;
 }
 
-#signInButton{
+.accentButton{
     background-color: var(--accent);
 }
 

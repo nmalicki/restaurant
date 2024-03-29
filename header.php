@@ -12,7 +12,7 @@
     </div>
     <div id="signInIsland">
         <button><a class= "buttonLink" href="locations.php">Locations</a></button>
-        <button id="signInButton" onclick="signInPopUp()">Sign In</button>
+        <button id="signInButton" class="accentButton" onclick="signInPopUp()">Sign In</button>
         <button id="signOut"> Sign Out</button>
     </div>
     
