@@ -3,6 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
 <nav id="navBar">
     <div id="contextMenu">
         <h1><a class="buttonLink" href="index.php">Restaurant</a></h1>

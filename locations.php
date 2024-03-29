@@ -5,6 +5,7 @@
         <title>Restaurant: Locations</title>
     </head>
     <body>
+        
         <h1>Locations</h1>
         <div id="mountingDiv"></div>
         <?php

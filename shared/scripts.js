@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
-
-
 var userLat;
 var userLong;
 
@@ -35,23 +33,24 @@ function signInResgisterToggle(s){
     }
 }
 
-function updateUserLocation(lat, long){
-    userLat = long;
-    userLong = lat;
-    
-}
-
 
 function getUserLocation(){
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => { 
-            updateUserLocation(position.coords.latitude, position.coords.longitude);
-        });
-        
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        console.log("Fail");
+        console.log("Loaction services unsupported");
     }
+    userLat = sessionStorage.getItem("lat");
+    userLong = sessionStorage.getItem("long");
+
 }
+
+function showPosition(position) {
+    sessionStorage.setItem("lat", position.coords.latitude);
+    sessionStorage.setItem("long", position.coords.longitude);
+
+}
+
 
 function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodatasource.com/developers/javascript
 	if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -94,7 +93,6 @@ function locationElementMaker(){
         let address = document.createElement("p");
         address.innerHTML = thisLocation[1];
         div.appendChild(address);
-        
         let distance = document.createElement("p");
         console.log(userLat, userLong, thisLocation[2], thisLocation[3]);
         distance.innerHTML = mapDistance(userLat, userLong, thisLocation[2], thisLocation[3]) + "m away";
