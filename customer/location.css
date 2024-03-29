@@ -10,9 +10,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     display: inline;
 }
 
-div .mapDiv{
+div.mapDiv{
     width: 90%;
-    height: 60%;
+    height: 55%;
     margin: 5%;
     margin-bottom: 0;
     border: 0;
@@ -20,14 +20,18 @@ div .mapDiv{
 }
 
 .aLocationDiv{
-    margin-left: 5%;
-    margin-bottom: 5%;
     height: 40%;
     width: 24%;
+    
+    margin-left: 5%;
+    margin-bottom: 5%;
     padding-top: 1%;
-    background-color: var(--background);
     display: inline flex;
     flex-wrap: wrap;
+    
+    background-color: var(--background);
+    border-radius: 1vw;
+    
 }
 
 p.aLocation{
@@ -35,5 +39,12 @@ p.aLocation{
     height: 2%;
     margin: 0;
     margin-left: 5%;
-    display: flex;
+    display: inline;
+}
+
+button.aLocation{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 1%;
+    background-color: var(--accent);
 }

@@ -11,12 +11,12 @@
         <?php
         //db call to get information and number of locations
         require 'shared/dbConnect.php';
-
-        //need js location data to be php session info
-        //$userLong = 42.5885696;
-        //$userLat = -71.7914112;
+        $userLat = "<script>document.writeln(userLat);</script>" ;
+        $userLong = "<script>document.writeln(userLong);</script>" ;
+        //echo $userLat;
+        //echo $userLong;
         
-        $sql = "SELECT * FROM `location` ORDER BY ST_Distance_Sphere( point('$userLong' , '$userLat'), point(location.longitude, location.latitude))";
+        $sql = "SELECT * FROM `location` ORDER BY ST_Distance_Sphere( point('$userLong' , '$userLat'), point(location.longitude, location.latitude)) DESC";
         $result = queryDb($sql);
         $locations = array();
         if ($result->num_rows > 0) {

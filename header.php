@@ -8,8 +8,7 @@
 <nav id="navBar">
     <div id="contextMenu">
         <h1><a class="buttonLink" href="index.php">Restaurant</a></h1>
-        <button>Test 1</button>
-        <button>Test 2</button>
+
     </div>
     <div id="signInIsland">
         <button><a class= "buttonLink" href="locations.php">Locations</a></button>

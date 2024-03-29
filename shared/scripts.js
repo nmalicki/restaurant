@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
-var userLat;
-var userLong;
+var userLat = 42.5882997;
+var userLong = -71.7922758;
+var setRestaurant;
+
+sessionStorage.setItem("lat", userLat);
+sessionStorage.setItem("long", userLong);
 
 function signInPopUp(){
     document.getElementById("signInContainer").style.display = "block";
@@ -74,6 +78,11 @@ function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodataso
 	}
 }
 
+function setRestaurant(location){
+    setRestaurant = location;
+    console.log(location);
+}
+
 function locationElementMaker(){
     for (i = 0; i < jsonLocations.length; i++){
         thisLocation = jsonLocations[i];
@@ -84,7 +93,7 @@ function locationElementMaker(){
         mapDiv.className = "mapDiv";
         div.appendChild(mapDiv);
         
-        
+        //let mapiFrame = document.createElement("iFrame");
         
         let address = document.createElement("p");
         address.innerHTML = thisLocation[1];
@@ -95,6 +104,13 @@ function locationElementMaker(){
         distance.innerHTML = mapDistance(userLat, userLong, thisLocation[2], thisLocation[3]).toFixed(2) + " miles away";
         distance.className = "aLocation";
         div.appendChild(distance);
+        
+        let setRestaurantButton = document.createElement("button");
+        setRestaurantButton.innerHTML = "Order Here";
+        //setRestaurantButton.onclick = setRestaurant(location); //this needs to actually pass the location
+        setRestaurantButton.className = "aLocation";
+
+        div.appendChild(setRestaurantButton);
         
         document.getElementById("mountingDiv").appendChild(div);
     }

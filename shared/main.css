@@ -27,7 +27,7 @@ html{
 
 nav{
     width: 10%;
-    height: 99vh;
+    height: 100vh;
     padding: 5px;
     border-right: 2px solid;
     display: flex;
