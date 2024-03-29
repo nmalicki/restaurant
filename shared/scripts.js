@@ -78,11 +78,13 @@ function locationElementMaker(){
     for (i = 0; i < jsonLocations.length; i++){
         thisLocation = jsonLocations[i];
         let div = document.createElement("div");
-        div.className = "aLocation";
+        div.className = "aLocationDiv";
         
-        let map = document.createElement("iFrame");
-        map.className = "map";
-        //div.appendChild(map);
+        let mapDiv = document.createElement("div");
+        mapDiv.className = "mapDiv";
+        div.appendChild(mapDiv);
+        
+        
         
         let address = document.createElement("p");
         address.innerHTML = thisLocation[1];

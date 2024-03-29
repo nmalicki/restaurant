@@ -10,25 +10,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     display: inline;
 }
 
-iFrame .map{
-    width: 30%;
+div .mapDiv{
+    width: 90%;
     height: 60%;
     margin: 5%;
+    margin-bottom: 0;
     border: 0;
     background-color: black;
 }
 
-div .aLocation{
+.aLocationDiv{
     margin-left: 5%;
     margin-bottom: 5%;
-    height: 30%;
+    height: 40%;
     width: 24%;
     padding-top: 1%;
     background-color: var(--background);
     display: inline flex;
+    flex-wrap: wrap;
 }
 
-p .aLocation{
+p.aLocation{
     width: 100%;
-    margin: 5%
+    height: 2%;
+    margin: 0;
+    margin-left: 5%;
+    display: flex;
 }
