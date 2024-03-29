@@ -78,24 +78,20 @@ function locationElementMaker(){
     for (i = 0; i < jsonLocations.length; i++){
         thisLocation = jsonLocations[i];
         let div = document.createElement("div");
-        div.style.backgroundColor = "#d9d9d9";
-        div.style.width = "20%";
-        div.style.height = "30%";
-        div.style.marginLeft = "15%";
-        div.style.paddingTop = "1%";
-        div.style.backgroundColor = "#d9d9d9";
-        div.style.display = "inline flex";
+        div.className = "aLocation";
         
         let map = document.createElement("iFrame");
-        map.style.border = 0;
+        map.className = "map";
         //div.appendChild(map);
         
         let address = document.createElement("p");
         address.innerHTML = thisLocation[1];
+        address.className = "aLocation";
         div.appendChild(address);
+        
         let distance = document.createElement("p");
-        console.log(userLat, userLong, thisLocation[2], thisLocation[3]);
-        distance.innerHTML = mapDistance(userLat, userLong, thisLocation[2], thisLocation[3]) + "m away";
+        distance.innerHTML = mapDistance(userLat, userLong, thisLocation[2], thisLocation[3]).toFixed(2) + " miles away";
+        distance.className = "aLocation";
         div.appendChild(distance);
         
         document.getElementById("mountingDiv").appendChild(div);
