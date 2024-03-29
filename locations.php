@@ -13,8 +13,8 @@
         require 'shared/dbConnect.php';
 
         //need js location data to be php session info
-        $userLong = 42.5885696;
-        $userLat = -71.7914112;
+        //$userLong = 42.5885696;
+        //$userLat = -71.7914112;
         
         $sql = "SELECT * FROM `location` ORDER BY ST_Distance_Sphere( point('$userLong' , '$userLat'), point(location.longitude, location.latitude))";
         $result = queryDb($sql);
@@ -23,7 +23,6 @@
             while ($row = $result->fetch_assoc()) {
                 array_push($locations, array($row["locationId"], $row["streetAddress"], $row["latitude"], $row["longitude"], $row["url"], $row["openingTime"], $row["closingTime"]));
                 $locationsjson = json_encode($locations);
-                //print($teamsjson);
                 echo "<script>var jsonLocations = $locationsjson;</script>";
             }
         } else {

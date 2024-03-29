@@ -48,7 +48,7 @@ function getUserLocation(){
 function showPosition(position) {
     sessionStorage.setItem("lat", position.coords.latitude);
     sessionStorage.setItem("long", position.coords.longitude);
-
+    //send data to php 
 }
 
 
