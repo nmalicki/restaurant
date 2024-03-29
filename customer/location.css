@@ -6,6 +6,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : Mar 25, 2024, 11:42:17 AM
     Author     : nmalicki
 */
+.mountingDiv{
+    display: inline flex;
+}
+
 
 .locationDiv {
     margin-left: 15%;
@@ -13,6 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     width: 20%;
     padding-top: 1%;
     background-color: var(--background);
+    display: inline flex;
 }
 
 .locationMap{
