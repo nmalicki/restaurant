@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2024 at 03:13 AM
+-- Generation Time: Apr 01, 2024 at 05:43 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,8 @@ INSERT INTO `customer` (`customerId`, `email`, `password`, `givenName`, `familyN
 (11, 'test@gmail.com', '$2y$10$GmH3sBfiA3BDCW6d3bEayu6Wex52v6kSvImqG8HwAotBpTVVHFw5y', 'Test', 'Test1', 0),
 (14, 'test1@gmail.com', '$2y$10$BlA7kSmBbt8uB1cQXPx8eeuzqi3ZqK7qud8JoGip8nC8JMX9T0WK6', 'Nathan', 'Malicki', 0),
 (15, 'test2@gmail.com', '$2y$10$m3XkC7npEXoC5x2fqb0hBuTTY7KCng14FihIKXU0nJxxtKu4aPWgK', 'Nathan', 'Malicki', 0),
-(16, '', '$2y$10$QUFkVOk5NwW.Vje9eAtTteHF7yy5yClPdLWsvP.3uh6DgEr1EnMgu', '', '', 0);
+(16, '', '$2y$10$QUFkVOk5NwW.Vje9eAtTteHF7yy5yClPdLWsvP.3uh6DgEr1EnMgu', '', '', 0),
+(18, 'test5@gmail.com', '$2y$10$1CMnpABNVnJzXU2eu5P88et8RGBjJKMQzSPtVw.HWAn2Ywtglovq2', 'nathan', 'Malicki', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +242,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dish`

@@ -14,6 +14,4 @@ include "header.php";
     <label>Email</label>
     <input id="email"></input>
     <input type="submit" class="accentButton">
-
-
 </form>

@@ -4,15 +4,15 @@ require "shared/dbConnect.php";
 
 $email = $_POST["email"];
 $password = $_POST["password"];
-//echo $email . "<br>";
 
-$sql = "SELECT `customerId`, `email`, `password`, `givenName`, `familyName`, `paymentInfo` FROM `customer` WHERE `email` LIKE '$email'";
+$sql = "SELECT `customerId`, `email`, `password`, `givenName`, `familyName`, `paymentInfo` FROM `customer` WHERE `email` = ? and `password` = ?";
 
 try {
-    $result = queryDb($sql);
-    if(password_verify($password, PASSWORD_DEFAULT) == ""){
-        echo "<h1 class= 'signInFeedback'>Sign In Successful</h1>";   
-    }
+    //not working
+    $result = loginDB($sql, $email, $password);
+    //echo $result[1], $result[2];
+    echo "<h1 class= 'signInFeedback'>Sign In Successful</h1>";   
+    
     
     //echo "<a class='logLink backLink' href='index.php'>< Home</a>";
 } catch (Exception $e) {
