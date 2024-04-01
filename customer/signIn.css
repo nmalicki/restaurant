@@ -70,7 +70,7 @@ input{
     background-color:var(--background);
 }
 
-#logInForm{
+#signInForm{
     display: none;
 }
 

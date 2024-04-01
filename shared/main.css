@@ -8,6 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 @import url("../customer/signIn.css");
+@import url("../customer/location.css");
 @import url("../cashier/employeeRegister.css");
 
 /*Colors*/
@@ -26,7 +27,7 @@ html{
 
 nav{
     width: 10%;
-    height: 99vh;
+    height: 100vh;
     padding: 5px;
     border-right: 2px solid;
     display: flex;
@@ -46,11 +47,11 @@ button{
     background-color: var(--background);
 }
 
-a{
+.buttonLink{
     text-decoration: none;
 }
 
-a:link, a:visited{
+.buttonLink:link, .buttonLink:visited{
     color: var(--text);
 }
 
@@ -62,7 +63,7 @@ h1{
     flex-grow: 1;
 }
 
-#signInButton{
+.accentButton{
     background-color: var(--accent);
 }
 

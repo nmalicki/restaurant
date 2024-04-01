@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2024 at 08:53 PM
+-- Generation Time: Apr 01, 2024 at 05:43 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,12 +30,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `customer` (
   `customerId` int(11) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `userName` varchar(32) NOT NULL,
   `password` text NOT NULL,
   `givenName` varchar(32) NOT NULL,
   `familyName` varchar(32) NOT NULL,
-  `paymentInfo` text NOT NULL
+  `paymentInfo` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerId`, `email`, `password`, `givenName`, `familyName`, `paymentInfo`) VALUES
+(11, 'test@gmail.com', '$2y$10$GmH3sBfiA3BDCW6d3bEayu6Wex52v6kSvImqG8HwAotBpTVVHFw5y', 'Test', 'Test1', 0),
+(14, 'test1@gmail.com', '$2y$10$BlA7kSmBbt8uB1cQXPx8eeuzqi3ZqK7qud8JoGip8nC8JMX9T0WK6', 'Nathan', 'Malicki', 0),
+(15, 'test2@gmail.com', '$2y$10$m3XkC7npEXoC5x2fqb0hBuTTY7KCng14FihIKXU0nJxxtKu4aPWgK', 'Nathan', 'Malicki', 0),
+(16, '', '$2y$10$QUFkVOk5NwW.Vje9eAtTteHF7yy5yClPdLWsvP.3uh6DgEr1EnMgu', '', '', 0),
+(18, 'test5@gmail.com', '$2y$10$1CMnpABNVnJzXU2eu5P88et8RGBjJKMQzSPtVw.HWAn2Ywtglovq2', 'nathan', 'Malicki', 0);
 
 -- --------------------------------------------------------
 
@@ -99,10 +109,22 @@ CREATE TABLE `ingredient` (
 CREATE TABLE `location` (
   `locationId` int(11) NOT NULL,
   `streetAddress` text NOT NULL,
-  `coordinates` text NOT NULL,
+  `latitude` float NOT NULL,
+  `longitude` float NOT NULL,
+  `url` text NOT NULL,
   `openingTime` time NOT NULL,
-  `ClosingTime` time NOT NULL
+  `closingTime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`locationId`, `streetAddress`, `latitude`, `longitude`, `url`, `openingTime`, `closingTime`) VALUES
+(1, '19 Union St', 42.5835, -71.7972, '19+Union+St,+Fitchburg,+MA+01420/@42.5835418,-71.7971898,17z/data=!3m1!4b1!4m6!3m5!1s0x89e3e64ef4cf29e9:0xb0fbffec3fc1f574!8m2!3d42.5835379!4d-71.7946149!16s%2Fg%2F11sdnmlgr2?entry=ttu', '09:00:00', '21:00:00'),
+(2, '580 Pearl St', 42.5886, -71.7914, '@42.5885696,-71.7914112,14z?entry=ttu', '09:00:00', '21:00:00'),
+(3, '389 Highland St', 42.6086, -71.7596, '389+Highland+St,+Lunenburg,+MA+01462/@42.608601,-71.7595484,15z/data=!3m1!4b1!4m9!1m2!2m1!1sgoogle+maps+api+create+map!3m5!1s0x89e3e81784b254dd:0xf5137361de620481!8m2!3d42.6085867!4d-71.7410944!16s%2Fg%2F11c0_flq66?entry=ttu', '09:00:00', '21:00:00'),
+(4, '158 Myrtle Ave', 42.587, -71.789, '158+Myrtle+Ave,+Fitchburg,+MA+01420/@42.5870086,-71.7890091,17.96z/data=!4m6!3m5!1s0x89e3e64b19048073:0x5c1611a1894d5a44!8m2!3d42.587305!4d-71.7894637!16s%2Fg%2F11c22kn45j?entry=ttu', '09:00:00', '21:00:00');
 
 -- --------------------------------------------------------
 
@@ -152,7 +174,8 @@ CREATE TABLE `orders` (
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customerId`);
+  ADD PRIMARY KEY (`customerId`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `dish`
@@ -219,7 +242,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -249,7 +272,7 @@ ALTER TABLE `ingredient`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `menuingredient`
