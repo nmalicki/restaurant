@@ -10,9 +10,11 @@ $conn;
 // APIs 
 function openDB() {
   global $servername, $username, $dbpassword, $dbname, $conn;
+  
 
 // Create connection
   $conn = new mysqli($servername, $username, $dbpassword, $dbname);
+  
   if ($conn->connect_error)
     return $conn->connect_error;
   else
