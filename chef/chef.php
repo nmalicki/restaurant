@@ -3,7 +3,7 @@
         <?php include 'header.php'; ?>
     </head>
     <body>
-        <h1>Chef by Karmjit</h1>
+        <h1>Chef</h1>
 
     </body>
 </html>
