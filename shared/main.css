@@ -9,8 +9,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 @import url("../customer/signIn.css");
 @import url("../customer/location.css");
-@import url("../cashier/employeeRegister.css");
-
 @import url("../chef/employeeRegister.css");
 /*Colors*/
 :root{
