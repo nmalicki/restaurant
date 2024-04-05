@@ -1,0 +1,26 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 18, 2024, 2:14:41 PM
+    Author     : ksingh
+*/
+
+#employeeSignInContainer{
+    z-index: 0;
+    width: 65%;
+    height: 80%;
+    
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    
+    display: none;
+    
+    background-color: var(--main);
+    border: solid black 2px;
+    border-radius: 35px;
+    
+    padding: 15px;
+}
