@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 05:17 PM
+-- Generation Time: Mar 06, 2024 at 08:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -93,6 +93,20 @@ CREATE TABLE `ingredient` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `location`
+--
+
+CREATE TABLE `location` (
+  `locationId` int(11) NOT NULL,
+  `streetAddress` text NOT NULL,
+  `coordinates` text NOT NULL,
+  `openingTime` time NOT NULL,
+  `ClosingTime` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menuingredient`
 --
 
@@ -126,7 +140,8 @@ CREATE TABLE `menuitem` (
 CREATE TABLE `orders` (
   `orderId` int(11) NOT NULL,
   `date` date NOT NULL,
-  `customerId` int(11) NOT NULL
+  `customerId` int(11) NOT NULL,
+  `locationId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -168,6 +183,12 @@ ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ingredientId`);
 
 --
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`locationId`);
+
+--
 -- Indexes for table `menuingredient`
 --
 ALTER TABLE `menuingredient`
@@ -187,7 +208,8 @@ ALTER TABLE `menuitem`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderId`),
-  ADD UNIQUE KEY `customerId` (`customerId`);
+  ADD UNIQUE KEY `customerId` (`customerId`),
+  ADD UNIQUE KEY `locationId` (`locationId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -222,6 +244,12 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `ingredient`
   MODIFY `ingredientId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menuingredient`
@@ -270,7 +298,8 @@ ALTER TABLE `menuingredient`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`locationId`) REFERENCES `location` (`locationId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
