@@ -17,15 +17,16 @@
         h2{
             color: red;
         }
+        
     </style>
 </head>
 <body>
     <?php
     // Retrieve given name from URL parameter
-    $givenName = isset($_GET ['givenName']) ? htmlspecialchars($_GET['givenName']) : 'cashier';
+    $givenName = isset($_GET ['givenName']) ? htmlspecialchars($_GET['givenName']) : 'employee';
     ?>
-    <h1>Welcome to the Restaurant <?php echo $givenName; ?>!</h1>
-    <p>Thank you for registering as a cashier!</p>
+    <h1>Welcome back <?php echo $givenName; ?>!</h1>
+    <p>Thank you for logging in today!</p>
     <h2>This is the cashier homepage</h2>
    
 </body>

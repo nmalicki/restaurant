@@ -1,15 +1,48 @@
 <?php
+session_start();
+if (isset($_SESSION['admin']) == true) {
+    echo "Welcome " . $_SESSION['admin'] . "!" ;
+} else {
+    echo "Please log in first to see this page.";
+    header("Location: adminLoginPage.php");
+    echo "Please log in first to see this page.";
+}
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
 
 ?>
 
-
-
-<p><center>Employee Registration</center></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            background-color: lightblue;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2{
+            color: red;
+        }
+               .submitButton {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+    </style>
+</head>
+<body>
+<h1><center>Employee Registration</center></h1>
 <div id="toggleDiv">
  
 </div>
@@ -54,7 +87,7 @@
 </div>
 </form>
 </form>
-
+</body>
 
 
 

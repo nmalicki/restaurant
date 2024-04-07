@@ -9,19 +9,18 @@ $position = $_POST["position"];
 
 $sql = "insert into employee VALUES (0, '$userName', '$password', '$givenName', '$familyName', '$position');";
 
+echo 'Success!';
+header("Location: ../adminWelcome.php");
+
 
 try {
     $result = modifyDB($sql);
-    echo "<h1 class= 'logInFeedback'>Registration Successful Welcome $position $givenName</h1>";
-    if ($position == "cashier" ){
-    header("Location: ../cashierWelcome.php?givenName=" . urlencode($givenName) );
-    }
-    else{
-        header("Location: ../welcomeChef.php?givenName=" . urlencode($givenName) );
-    }
+echo 'Success!';
+header("Location: ../adminWelcome.php");
     exit();
-   
-} catch (Exception $e) {
+}
+  
+ catch (Exception $e) {
     $error = $e->getMessage();
     if (fnmatch("Duplicate entry '*' for key 'email'", $error) == 1) {
         echo "<h1 class= 'logInFeedback'>Username already in use</h1>";
