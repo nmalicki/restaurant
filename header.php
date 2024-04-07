@@ -1,7 +1,6 @@
 <head>
 <?php 
-    session_start(); 
-    //require 'signInAction.php setJSVars';
+    session_start();
 ?>
 </head>
 <link rel="stylesheet" href='shared/main.css'>
@@ -38,7 +37,6 @@
         $exportFamilyName = json_encode($_SESSION["familyName"]);
         $exportPayment = json_encode($_SESSION["paymentInfo"]);
         echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; </script>"; 
-
 
         echo "<script type='text/javascript'>  signedIn('" . $_SESSION['givenName'] . "'); </script>"; 
     }

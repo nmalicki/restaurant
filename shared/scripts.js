@@ -127,8 +127,16 @@ function accountPopUp(){
 
 
 function signedIn(name){
-    console.log("signed IN");
     button = document.getElementById("signInButton");
     button.innerHTML = name;
     button.onclick = accountPopUp;
+}
+
+function signOut(){
+    button = document.getElementById("signInButton");
+    button.innerHTML = "Sign In";
+    button.onclick = signInPopUp;
+    //header("Location: http://localhost/restaurant/index.php", true, 301);
+    //exit();
+
 }
