@@ -1,0 +1,32 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 7, 2024, 12:36:31 PM
+    Author     : nmalicki
+*/
+
+#accountContainer{
+    z-index: 0;
+    width: 65%;
+    height: 80%;
+    
+    position: absolute;
+
+    bottom: 10%;
+    left: 20%;
+    
+    display: none;
+    
+    background-color: var(--main);
+    border: solid black 2px;
+    border-radius: 35px;
+    
+    padding: 15px;
+}
+
+#accountContainerClose{
+    width: 30px;
+    margin-left: 95%;
+}

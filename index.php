@@ -7,6 +7,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     <head>
         <?php include 'header.php'; ?>
         
+
+        
         <title>Restaurant: Home</title>
     </head>
     <body>

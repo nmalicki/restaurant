@@ -117,3 +117,18 @@ function locationElementMaker(){
     // url += apiKey + "&q=" + dbUrl
     
 }
+
+function accountPopUp(){
+    document.getElementById("accountContainer").style.display = "block";
+    document.getElementById("accountEmail").value = email;
+    document.getElementById("accountGivenName").value = givenName;
+    document.getElementById("accountFamilyName").value = familyName;
+}
+
+
+function signedIn(name){
+    console.log("signed IN");
+    button = document.getElementById("signInButton");
+    button.innerHTML = name;
+    button.onclick = accountPopUp;
+}

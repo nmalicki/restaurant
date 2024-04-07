@@ -1,3 +1,9 @@
+<head>
+<?php 
+    session_start(); 
+    //require 'signInAction.php setJSVars';
+?>
+</head>
 <link rel="stylesheet" href='shared/main.css'>
 <script src="shared/scripts.js"></script>
 <meta charset="UTF-8">
@@ -19,9 +25,21 @@
     <div id="signInContainer">
         <?php include 'customer/signInPopUp.php'; ?>
     </div>
+    <div id="accountContainer">
+        <?php include 'customer/account.php'; ?>
+    </div>
 </nav>
 
 <script>getUserLocation();</script>
 <?php 
-    //pass js location information to php
+    if(isset($_SESSION['givenName']) ){        
+        $exportEmail = json_encode($_SESSION["email"]);
+        $exportName = json_encode($_SESSION["givenName"]);
+        $exportFamilyName = json_encode($_SESSION["familyName"]);
+        $exportPayment = json_encode($_SESSION["paymentInfo"]);
+        echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; </script>"; 
+
+
+        echo "<script type='text/javascript'>  signedIn('" . $_SESSION['givenName'] . "'); </script>"; 
+    }
 ?>

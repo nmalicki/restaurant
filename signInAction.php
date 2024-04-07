@@ -15,15 +15,24 @@ if ($result->num_rows == 1) {
         $result = array($row["customerId"], $row["email"], $row["password"], $row["givenName"], $row["familyName"], $row["paymentInfo"]);
         if (password_verify($password, $row["password"])) {
             //ui for user after successfull login
-            echo "<h1 class='logInFeedback'>Log In Successful</h1>";
-            echo "<a class='logLink backLink' href='index.php'>< Home</a>";
+            echo "<h1 class='logInFeedback'>Log In Successful, Hello " . $row['givenName'] . "</h1>";
+            echo "<a class='logLink backLink' href='index.php'>Home</a>";
 
-            /*
+            
               //setting session values
-              $_SESSION['usertype'] = $row["userType"];
-              $_SESSION['favoriteTeam'] = $row["favoriteTeam"];
-              $_SESSION['userInfo'] = $result;
+              $_SESSION['email'] = $row["email"];
+              $_SESSION['givenName'] = $row["givenName"];
+              $_SESSION['familyName'] = $row["familyName"];
+              $_SESSION['paymentInfo'] = $row["paymentInfo"];
+              $exportEmail = json_encode($_SESSION["email"]);
+              $exportName = json_encode($_SESSION["givenName"]);
+              $exportFamilyName = json_encode($_SESSION["familyName"]);
+              $exportPayment = json_encode($_SESSION["paymentInfo"]);
 
+              
+              
+              echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; signedIn( '". $row["givenName"] ."'); </script>"; 
+             /*
               //converting session values to json
               $exportType = json_encode($_SESSION["usertype"]);
               $exportUserInfo = json_encode($_SESSION["userInfo"]);
