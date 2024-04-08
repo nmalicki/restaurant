@@ -14,6 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     <body>
         
         <!-- A grey horizontal navbar that becomes vertical on small screens -->
+            <p>Home</p>
             <p>test</p>
             <p>test</p>
             <p>test</p>
@@ -29,15 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             <p>test</p>
             <p>test</p>
             <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
+            
         <?php
         // put your code here
         ?>
