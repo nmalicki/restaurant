@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2024 at 05:43 PM
+-- Generation Time: Mar 06, 2024 at 08:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,19 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `customer` (
   `customerId` int(11) NOT NULL,
   `email` varchar(32) NOT NULL,
+  `userName` varchar(32) NOT NULL,
   `password` text NOT NULL,
   `givenName` varchar(32) NOT NULL,
   `familyName` varchar(32) NOT NULL,
   `paymentInfo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`customerId`, `email`, `password`, `givenName`, `familyName`, `paymentInfo`) VALUES
-(1, 'kabbi', '$2y$10$asdnOdP0AIwXirUSJa7GO.k42uNWz/5N/C3/Gi41RJAFlY3JJ8.py', 'karmjit', 'singh', '0'),
-(2, 'kabbi', '$2y$10$adBUq44YVzZIJtG1gOXcX.OM5uFspG1AFnkAdSjrZ8puiu7Rs.Kmi', 'karmjit', 'singh', '0');
 
 -- --------------------------------------------------------
 
@@ -84,16 +77,6 @@ CREATE TABLE `employee` (
   `position` enum('chef','cashier') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`employeeId`, `userName`, `password`, `givenName`, `familyName`, `position`) VALUES
-(79, 'kabbi', '$2y$10$4lqo2ROaHToe3Kd4Jo65hujw7JHO47sCNpeaKmTlIRavV.DVElVUO', 'Karmjit', 'singh', 'chef'),
-(80, 'kabbi', '$2y$10$jd02gWUf6RmYUFQRZ6xiF.4xCtxsclPqPRJavxqTx12OUq/klF5ke', 'Karmjit', 'singh', 'chef'),
-(81, 'kabbi', '$2y$10$ERtvGMhaNIecJvKQtngpfeIw8bubHu6fikVcqDCAVclmjogC1E3Na', 'Karmjit', 'singh', 'chef'),
-(82, 'kabbi', '$2y$10$GXqckhxUAa3I/pWyz0ZCPOegUB17KlAckgEVudw1d3chJxER5iHYe', 'Karmjit', 'singh', 'chef');
-
 -- --------------------------------------------------------
 
 --
@@ -103,17 +86,23 @@ INSERT INTO `employee` (`employeeId`, `userName`, `password`, `givenName`, `fami
 CREATE TABLE `ingredient` (
   `ingredientId` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `price` float NOT NULL,
+  `price` decimal(10,0) NOT NULL,
   `inStock` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `ingredient`
+-- Table structure for table `location`
 --
 
-INSERT INTO `ingredient` (`ingredientId`, `name`, `price`, `inStock`) VALUES
-(1, 'Ketchup', 0, 1),
-(2, 'Mustard', 0, 1);
+CREATE TABLE `location` (
+  `locationId` int(11) NOT NULL,
+  `streetAddress` text NOT NULL,
+  `coordinates` text NOT NULL,
+  `openingTime` time NOT NULL,
+  `ClosingTime` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -151,7 +140,8 @@ CREATE TABLE `menuitem` (
 CREATE TABLE `orders` (
   `orderId` int(11) NOT NULL,
   `date` date NOT NULL,
-  `customerId` int(11) NOT NULL
+  `customerId` int(11) NOT NULL,
+  `locationId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -193,6 +183,12 @@ ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ingredientId`);
 
 --
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`locationId`);
+
+--
 -- Indexes for table `menuingredient`
 --
 ALTER TABLE `menuingredient`
@@ -212,7 +208,8 @@ ALTER TABLE `menuitem`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderId`),
-  ADD UNIQUE KEY `customerId` (`customerId`);
+  ADD UNIQUE KEY `customerId` (`customerId`),
+  ADD UNIQUE KEY `locationId` (`locationId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -222,7 +219,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -240,13 +237,19 @@ ALTER TABLE `dishmenuingredient`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employeeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `employeeId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ingredientId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ingredientId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menuingredient`
@@ -295,7 +298,8 @@ ALTER TABLE `menuingredient`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`locationId`) REFERENCES `location` (`locationId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
