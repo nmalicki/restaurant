@@ -50,6 +50,11 @@ if (isset($_SESSION['admin']) == true) {
         <button class="submitButton">Register Employees</button></p> 
 </form>
 
+<form name='editEmployees' action='redirectEditEmployees.php' class="w3-container w3-card-4">
+      <p>      
+        <button class="submitButton">Edit Employees</button></p> 
+</form>
+
 <form name='logout' action='adminLogoutAction.php' class="w3-container w3-card-4">
       <p>      
         <button class="submitButton" >Logout</button></p>  
