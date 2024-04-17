@@ -8,6 +8,7 @@ var setRestaurant;
 
 sessionStorage.setItem("lat", userLat);
 sessionStorage.setItem("long", userLong);
+sessionStorage.setItem("setRestaurant", setRestaurant);
 
 function signInPopUp(){
     document.getElementById("signInContainer").style.display = "block";
@@ -79,8 +80,8 @@ function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodataso
 }
 
 function setRestaurant(location){
-    setRestaurant = location;
-    console.log(location);
+    sessionStorage.setItem("setRestaurant", location);
+    console.log("Location set to", sessionStorage.getItem("setRestaurant"));
 }
 
 function locationElementMaker(){
@@ -107,7 +108,10 @@ function locationElementMaker(){
         
         let setRestaurantButton = document.createElement("button");
         setRestaurantButton.innerHTML = "Order Here";
-        //setRestaurantButton.onclick = setRestaurant(location); //this needs to actually pass the location
+        var test = function(location){
+            setRestaurant(location)
+        }
+        setRestaurantButton.onclick = addEventListener("click", test(thisLocation), false); //***setting to last location in array***
         setRestaurantButton.className = "aLocation";
 
         div.appendChild(setRestaurantButton);
