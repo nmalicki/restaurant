@@ -73,10 +73,11 @@ openDB();
 
                 <label>Position</label>
 
-                <input type="position"></input>
+                <input type="position" name = "position"></input>
                 <br>
                 <br>
                 <input type="submit" class="submitButton"></input>
+        </form>
                 <br>
                 <br>
                 <br>
@@ -105,4 +106,5 @@ openDB();
                             echo "0 results";
                         }
                         ?>
+                </form>
                         </body>
