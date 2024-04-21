@@ -1,6 +1,9 @@
 <head>
 <?php 
+    
     session_start();
+    //session_destroy();
+    
 ?>
 </head>
 <link rel="stylesheet" href='shared/main.css'>
@@ -24,9 +27,7 @@
     <div id="signInContainer">
         <?php include 'customer/signInPopUp.php'; ?>
     </div>
-    <div id="accountContainer">
-        <?php include 'customer/account.php'; ?>
-    </div>
+
 </nav>
 
 <script>getUserLocation();</script>

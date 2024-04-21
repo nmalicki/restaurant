@@ -32,16 +32,6 @@ if ($result->num_rows == 1) {
               
               
               echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; signedIn( '". $row["givenName"] ."'); </script>"; 
-             /*
-              //converting session values to json
-              $exportType = json_encode($_SESSION["usertype"]);
-              $exportUserInfo = json_encode($_SESSION["userInfo"]);
-              $exportTeam = json_encode($_SESSION["favoriteTeam"]);
-
-              //make json visible to js
-              echo "<script>usertype = $exportType;  sessionStorage.setItem('userInfo', $exportUserInfo); loggedIn();</script>";
-             * 
-             */
         } else {
             echo "<h1 class='logInFeedback'>Invalid username or password.</h1>";
             echo "<a class='logLink backLink' href='index.php'>< Back</a>";

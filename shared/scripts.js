@@ -122,18 +122,61 @@ function locationElementMaker(){
     
 }
 
-function accountPopUp(){
-    document.getElementById("accountContainer").style.display = "block";
+function goToMenuItem(menuItemId){
+    console.log(menuItemId);
+    window.location.href = "http://localhost/restaurant/menuItem.php?Id=" + menuItemId
+}
+
+function menuItemElementMaker(){
+    for (i = 0; i < jsonMenuItems.length; i++){
+        thisMenuItem = jsonMenuItems[i];
+        let div = document.createElement("div");
+        div.className = "menuItemDiv";
+        
+        let imDiv = document.createElement("img");
+        imDiv.className = "imDiv";
+        imDiv.src = "shared/fallback.jpg";
+        div.appendChild(imDiv);
+        
+        let name = document.createElement("p");
+        name.innerHTML = thisMenuItem[1];
+        name.className = "aMenuItem";
+        div.appendChild(name);
+        
+        let price = document.createElement("p");
+        price.innerHTML = thisMenuItem[2];
+        price.className = "aMenuItem";
+        div.appendChild(price);
+        
+        let addToOrderButton = document.createElement("button");
+        addToOrderButton.innerHTML = "Add to Order";
+        addToOrderButton.setAttribute("onclick", "goToMenuItem(" + thisMenuItem[0] + ")")
+        addToOrderButton.className = "menuOrderButton";
+
+        div.appendChild(addToOrderButton);
+        
+        document.getElementById("mountingDiv").appendChild(div);
+    }
+}
+
+
+
+function accountRedirect(){
+    //document.getElementById("accountContainer").style.display = "block";//change this to redirct to account page
+    window.location.href = "http://localhost/restaurant/account.php";    
+}
+
+function accountInfoFill(){
     document.getElementById("accountEmail").value = email;
     document.getElementById("accountGivenName").value = givenName;
     document.getElementById("accountFamilyName").value = familyName;
 }
 
-
 function signedIn(name){
     button = document.getElementById("signInButton");
     button.innerHTML = name;
-    button.onclick = accountPopUp;
+    button.onclick = accountRedirect;
+    //window.location.href = "http://localhost/restaurant/account.php";   //causes loop for some reason
 }
 
 function signOut(){
@@ -142,5 +185,64 @@ function signOut(){
     button.onclick = signInPopUp;
     //header("Location: http://localhost/restaurant/index.php", true, 301);
     //exit();
+}
 
+//does not work as of now. see article for fix https://stackoverflow.com/questions/1119289/how-to-show-the-are-you-sure-you-want-to-navigate-away-from-this-page-when-ch
+function unsavedAccountChanges(){
+    alert("You have unsaved changes");
+}
+
+
+function menuItem(ingredients){
+    let label = document.createElement("h1");
+    label.className = "";
+    label.innerHTML = ingredients[0][0];
+    document.getElementById("menuDiv").appendChild(label);
+    
+    let superDiv = document.createElement("div");
+    superDiv.className = "superDiv";
+    
+    let left = document.createElement("div");
+    left.className = 'leftMenu';
+    let right = document.createElement("div");
+    right.className = 'rightMenu';
+    
+    let menuIm = document.createElement("img");
+    menuIm.className = "menuIm";
+    menuIm.src = "shared/fallback.jpg";
+    left.appendChild(menuIm);
+    
+    let price = document.createElement("h2");
+    price.innerHTML = "$" + ingredients[0][1];
+    price.className = "menuh";
+    left.appendChild(price);
+    
+    let desc = document.createElement("h4");
+    desc.innerHTML = ingredients[0][2];
+    desc.className = "menuh";
+    left.appendChild(desc);
+    
+    superDiv.appendChild(left);
+    
+    for (i = 0; i < ingredients.length; i++){
+        thisIngredient = ingredients[i]
+        let thisButton = document.createElement("button");
+        thisButton.className = "regularMenu";
+        thisButton.innerHTML = thisIngredient[3];
+        if(thisIngredient[4] == 0){ //out of stock
+           thisButton.className += " outOfStock";
+           thisButton.setAttribute("disabled", True);
+        }
+        if(thisIngredient[5] == 0){ //not included
+            thisButton.className += " notIncluded"
+        }
+        if(thisIngredient[6] == 1){ //extra charge
+            thisButton.className += " extra";
+            thisButton.innerHTML += " +$";
+        }
+        right.appendChild(thisButton);
+        
+    }
+    superDiv.appendChild(right);
+    document.getElementById("menuDiv").appendChild(superDiv);    
 }

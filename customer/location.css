@@ -16,7 +16,7 @@ div.mapDiv{
     margin: 5%;
     margin-bottom: 0;
     border: 0;
-    background-color: black;
+    background-color: var(--selected);
 }
 
 .aLocationDiv{

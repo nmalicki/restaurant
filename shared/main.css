@@ -10,13 +10,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 @import url("../customer/signIn.css");
 @import url("../customer/location.css");
 @import url("../customer/account.css");
+@import url("../customer/menu.css");
 @import url("../cashier/employeeRegister.css");
 
 /*Colors*/
 :root{
     --main:#ffffff;
     --background:#d9d9d9;
-    --selected:#989898;
+    --selected:#b4b4b4;
     --accent:#2c5af2;
     --text: #000000;
 

@@ -5,31 +5,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 -->
 <html>
     <head>
-        <?php include 'header.php'; ?>
+        <?php include 'header.php'; 
+        require 'shared/dbConnect.php';
+        
+        if(isset($_POST["signOut"])){ 
+            echo "<script type='text/javascript'> signOut; </script>"; //this is not working
+            session_destroy(); //this is not working
+            header('Location: index.php'); //readd when signOut() and destroy session work
+            die();
+        }
+        
+        
+        $sql = "SELECT `menuItemId`, `menuItemName`, `basePrice`, `description` FROM `menuitem` WHERE 1";
+        $result = queryDb($sql);
+        $menuItems = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($menuItems, array($row["menuItemId"], $row["menuItemName"], $row["basePrice"], $row["description"]));
+            }
+            $menuItemsjson = json_encode($menuItems);
+            echo "<script>var jsonMenuItems = $menuItemsjson;</script>";
+        } else {
+            echo "0 results";
+        }
+        ?>
         
 
         
         <title>Restaurant: Home</title>
     </head>
-    <body>
+    <body onload="menuItemElementMaker()">
         
-        <!-- A grey horizontal navbar that becomes vertical on small screens -->
-            <p>Home</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
+        <div id="mountingDiv"></div>
             
         <?php
         // put your code here
