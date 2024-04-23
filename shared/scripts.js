@@ -2,13 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
-var userLat = 42.5882997;
-var userLong = -71.7922758;
-var setRestaurant;
+var cart = sessionStorage.getItem("cart");
+if(cart == null){
+    cart = "";
+    sessionStorage.setItem("cart", cart);
+}
 
-sessionStorage.setItem("lat", userLat);
-sessionStorage.setItem("long", userLong);
-sessionStorage.setItem("setRestaurant", setRestaurant);
+var userLat = sessionStorage.getItem("lat");
+var userLong = sessionStorage.getItem("long");
+if (userLat == null){
+    userLat = 42.5882997;
+    userLong = -71.7922758;
+    sessionStorage.setItem("lat", userLat);
+    sessionStorage.setItem("long", userLong);
+}
+
+var setRestaurant = sessionStorage.getItem("setRestaurant");
 
 function signInPopUp(){
     document.getElementById("signInContainer").style.display = "block";
@@ -150,7 +159,7 @@ function menuItemElementMaker(){
         
         let addToOrderButton = document.createElement("button");
         addToOrderButton.innerHTML = "Add to Order";
-        addToOrderButton.setAttribute("onclick", "goToMenuItem(" + thisMenuItem[0] + ")")
+        addToOrderButton.setAttribute("onclick", "goToMenuItem(" + thisMenuItem[0] + ")");
         addToOrderButton.className = "menuOrderButton";
 
         div.appendChild(addToOrderButton);
@@ -158,8 +167,6 @@ function menuItemElementMaker(){
         document.getElementById("mountingDiv").appendChild(div);
     }
 }
-
-
 
 function accountRedirect(){
     //document.getElementById("accountContainer").style.display = "block";//change this to redirct to account page
@@ -193,6 +200,32 @@ function unsavedAccountChanges(){
 }
 
 
+function addToCart(item){ //session storage is not storing between pages
+    cart = sessionStorage.getItem("cart");
+    if(cart == ""){
+        cart = item;
+        sessionStorage.setItem("cart", cart);
+    }
+    else{
+        cart += ", " + item;
+        sessionStorage.setItem("cart", cart);
+    } 
+    updateCartButton();
+    //redirect back to index
+}
+
+function toggleButton(buttonName){
+    button = document.getElementById(buttonName);
+    if(button.className === "regularMenu notIncluded"){ //every button addresses top button
+        button.className = "regularMenu";
+        //console.log('disable');
+    }
+    else{
+        button.className = "regularMenu notIncluded";
+        //console.log('enabled');
+    }
+}
+
 function menuItem(ingredients){
     let label = document.createElement("h1");
     label.className = "";
@@ -222,16 +255,24 @@ function menuItem(ingredients){
     desc.className = "menuh";
     left.appendChild(desc);
     
+    let addToCart = document.createElement("button");
+    addToCart.className = "addToCartButton";
+    addToCart.innerHTML = "Add to Cart +";
+    addToCart.setAttribute("onclick",  "addToCart(" + "'test'" + ")");
+    left.appendChild(addToCart);
+    
     superDiv.appendChild(left);
     
     for (i = 0; i < ingredients.length; i++){
-        thisIngredient = ingredients[i]
+        thisIngredient = ingredients[i];
         let thisButton = document.createElement("button");
         thisButton.className = "regularMenu";
+        thisButton.id = thisIngredient[1];
+        thisButton.setAttribute("onclick",  "toggleButton(" + thisIngredient[1] + ")");
         thisButton.innerHTML = thisIngredient[3];
         if(thisIngredient[4] == 0){ //out of stock
            thisButton.className += " outOfStock";
-           thisButton.setAttribute("disabled", True);
+           thisButton.disabled = true;
         }
         if(thisIngredient[5] == 0){ //not included
             thisButton.className += " notIncluded"
@@ -245,4 +286,21 @@ function menuItem(ingredients){
     }
     superDiv.appendChild(right);
     document.getElementById("menuDiv").appendChild(superDiv);    
+}
+
+function updateCartButton(){
+    button = document.getElementById("cartButton");
+    cart = sessionStorage.getItem("cart");
+    cart = cart.split(",");
+    if(cart.length > 0){
+        if(cart[0].localeCompare('') === 0){
+            button.innerHTML = "Cart";
+        }
+        else{
+            button.innerHTML = "Cart (" + cart.length + ")";
+        }   
+    }
+    else{
+        console.log(cart, "cart is empty");
+    }
 }

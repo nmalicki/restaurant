@@ -14,12 +14,15 @@
 
 
 <nav id="navBar">
+    
     <div id="contextMenu">
         <h1><a class="buttonLink" href="index.php">Restaurant</a></h1>
+        
 
     </div>
     <div id="signInIsland">
         <button><a class= "buttonLink" href="locations.php">Locations</a></button>
+        <button><a id="cartButton" class="buttonLink" href="cart.php">Cart</a></button>
         <button id="signInButton" class="accentButton" onclick="signInPopUp()">Sign In</button>
         <button id="signOut"> Sign Out</button>
     </div>
@@ -30,7 +33,10 @@
 
 </nav>
 
-<script>getUserLocation();</script>
+<script>
+    getUserLocation();
+    updateCartButton();
+</script>
 <?php 
     if(isset($_SESSION['givenName']) ){        
         $exportEmail = json_encode($_SESSION["email"]);

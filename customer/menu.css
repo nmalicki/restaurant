@@ -8,8 +8,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .imDiv{
-    width: 15rem;
+    width: 10.5rem;
     margin: 5.5%;
+    margin-top: 2%;
     margin-bottom: 0;
     border: 0;
     background-color: var(--selected);
@@ -17,7 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .menuItemDiv{
     width: 15%;
-    height: 40%;
+    height: 45%;
     
     margin-left: 5%;
     margin-bottom: 5%;
@@ -35,6 +36,7 @@ p.aMenuItem{
     height: 2%;
     margin: 0;
     margin-left: 10%;
+    margin-top: 1%;
     display: inline;
 }
 
@@ -72,7 +74,7 @@ button.menuOrderButton{
 }
 
 .outOfStock{
-    
+    border-color: var(--selected);
 }
 .included{}
 .notIncluded{

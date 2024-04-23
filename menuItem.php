@@ -6,7 +6,7 @@
             require 'shared/dbConnect.php';
             $menuItemId = $_GET['Id'];
             $ingredients = [];
-            $sql = "SELECT menuitem.menuItemName, menuitem.basePrice, menuitem.description, ingredient.name, ingredient.price, ingredient.inStock, menuingredient.includedByDefault, menuingredient.extraCharge FROM menuitem, menuingredient, ingredient where ingredient.ingredientId = menuingredient.ingredientId and menuitem.menuItemId = menuingredient.menuItemId and menuitem.menuItemId = $menuItemId ORDER BY menuingredient.includedByDefault DESC";
+            $sql = "SELECT menuitem.menuItemName, menuitem.basePrice, menuitem.description, ingredient.name, ingredient.price, ingredient.inStock, menuingredient.includedByDefault, menuingredient.extraCharge FROM menuitem, menuingredient, ingredient where ingredient.ingredientId = menuingredient.ingredientId and menuitem.menuItemId = menuingredient.menuItemId and menuitem.menuItemId = $menuItemId ORDER BY ingredient.inStock DESC, menuingredient.includedByDefault DESC";
             $result = queryDB($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
