@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 #signInContainer{
-    z-index: 0;
+    z-index: 100;
     width: 65%;
     height: 80%;
     
@@ -35,17 +35,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     display: none;
 }
 
-form{
-    padding: 30px 30%;
+.signInForms{
+    padding: 30px 15%;
 }
 
 label{
     padding: 0 15px 15px 0;
-}
-
-input{
-    margin-bottom: 15px;
-    width: 100%;
 }
 
 #toggleDiv{
@@ -91,11 +86,14 @@ input{
 }
 
 input{
+    margin-bottom: 15px;
+    width: 100%;
+
     height: 25px;
     border: 0;
     border-radius: 35px;
     background-color: var(--background);
-    padding-left: 20px;
+    padding: 0px 20px;
 }
 
 .submitButton{

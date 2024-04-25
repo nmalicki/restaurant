@@ -14,7 +14,7 @@
     <button id="signInFormButton" onclick="signInResgisterToggle('s')">Sign In</button>
 </div>
 
-<form id="registerForm" action="registerAction.php" method="POST">
+<form id="registerForm" class="signInForms" action="registerAction.php" method="POST">
     <div id="registerNames">
         <div class="half left">
             <label>Given Name</label>
@@ -42,7 +42,7 @@
     <input type="submit" class="submitButton"></input>
 </form>
 
-<form id="signInForm" action="signInAction.php" method="POST">
+<form id="signInForm" class="signInForms" action="signInAction.php" method="POST">
     <label>Email</label>
     <br>
     <input name="email"></input>

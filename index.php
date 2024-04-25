@@ -35,9 +35,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <title>Restaurant: Home</title>
     </head>
     <body onload="menuItemElementMaker()">
-        
         <div id="mountingDiv"></div>
-            
+        <p>test</p>  
+        <p>test</p> 
+        <p>test</p> 
+        <p>test</p> 
+        <p>test</p> 
+
         <?php
         // put your code here
         ?>

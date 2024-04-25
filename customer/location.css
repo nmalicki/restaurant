@@ -17,6 +17,8 @@ div.mapDiv{
     margin-bottom: 0;
     border: 0;
     background-color: var(--selected);
+    background-image: url("MapFallback.png");
+    background-size: 275px;
 }
 
 .aLocationDiv{

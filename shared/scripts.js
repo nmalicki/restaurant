@@ -67,25 +67,25 @@ function showPosition(position) {
 
 
 function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodatasource.com/developers/javascript
-	if ((lat1 == lat2) && (lon1 == lon2)) {
-		return 0;
-	}
-	else {
-		var radlat1 = Math.PI * lat1/180;
-		var radlat2 = Math.PI * lat2/180;
-		var theta = lon1-lon2;
-		var radtheta = Math.PI * theta/180;
-		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-		if (dist > 1) {
-			dist = 1;
-		}
-		dist = Math.acos(dist);
-		dist = dist * 180/Math.PI;
-		dist = dist * 60 * 1.1515;
-		if (unit=="K") { dist = dist * 1.609344 }
-		if (unit=="N") { dist = dist * 0.8684 }
-		return dist;
-	}
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+    }
+    else {
+            var radlat1 = Math.PI * lat1/180;
+            var radlat2 = Math.PI * lat2/180;
+            var theta = lon1-lon2;
+            var radtheta = Math.PI * theta/180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                    dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180/Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit=="K") { dist = dist * 1.609344 }
+            if (unit=="N") { dist = dist * 0.8684 }
+            return dist;
+    }
 }
 
 function setRestaurant(location){
@@ -117,10 +117,8 @@ function locationElementMaker(){
         
         let setRestaurantButton = document.createElement("button");
         setRestaurantButton.innerHTML = "Order Here";
-        var test = function(location){
-            setRestaurant(location)
-        }
-        setRestaurantButton.onclick = addEventListener("click", test(thisLocation), false); //***setting to last location in array***
+        
+        setRestaurantButton.setAttribute("onclick", "setRestaurant('" + thisLocation + "')"); //***setting to last location in array***
         setRestaurantButton.className = "aLocation";
 
         div.appendChild(setRestaurantButton);
@@ -232,8 +230,9 @@ function menuItem(ingredients){
     label.innerHTML = ingredients[0][0];
     document.getElementById("menuDiv").appendChild(label);
     
-    let superDiv = document.createElement("div");
+    let superDiv = document.createElement("form");
     superDiv.className = "superDiv";
+    superDiv.action = "index.php";
     
     let left = document.createElement("div");
     left.className = 'leftMenu';
@@ -258,7 +257,8 @@ function menuItem(ingredients){
     let addToCart = document.createElement("button");
     addToCart.className = "addToCartButton";
     addToCart.innerHTML = "Add to Cart +";
-    addToCart.setAttribute("onclick",  "addToCart(" + "'test'" + ")");
+    addToCart.setAttribute("onclick",  "addToCart('" + "test" + "')");
+    addToCart.setAttribute("type", "submit");
     left.appendChild(addToCart);
     
     superDiv.appendChild(left);
@@ -267,9 +267,10 @@ function menuItem(ingredients){
         thisIngredient = ingredients[i];
         let thisButton = document.createElement("button");
         thisButton.className = "regularMenu";
-        thisButton.id = thisIngredient[1];
-        thisButton.setAttribute("onclick",  "toggleButton(" + thisIngredient[1] + ")");
+        thisButton.id = thisIngredient[3];
+        thisButton.setAttribute("onclick",  "toggleButton('" + thisIngredient[3] + "')");
         thisButton.innerHTML = thisIngredient[3];
+        thisButton.setAttribute("type", "button");
         if(thisIngredient[4] == 0){ //out of stock
            thisButton.className += " outOfStock";
            thisButton.disabled = true;
@@ -302,5 +303,17 @@ function updateCartButton(){
     }
     else{
         console.log(cart, "cart is empty");
+    }
+}
+
+
+function populateCart(){
+    cart = sessionStorage.getItem("cart");
+    p = document.getElementById("cartList");
+    if(cart === null || cart === ""){
+        p.innerHTML = "Cart is empty";
+    }
+    else{
+        p.innerHTML = cart;
     }
 }

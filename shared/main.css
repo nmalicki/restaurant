@@ -11,6 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 @import url("../customer/location.css");
 @import url("../customer/account.css");
 @import url("../customer/menu.css");
+@import url("../customer/cart.css");
 @import url("../cashier/employeeRegister.css");
 
 /*Colors*/
@@ -22,6 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     --text: #000000;
 
 }
+
 
 html{
     font-family: Arial, sans-serif;
@@ -38,6 +40,8 @@ nav{
     margin-top: -20px;
     margin-right: 10px;
     
+    /*do not set position to sticky, it messes with sign-in form popup*/
+    z-index:1;
 }
 
 button{
