@@ -2,7 +2,9 @@
     <title>Restaurant: Cart</title>
     <?php
     include "header.php";
-
+    require "shared/dbConnect.php";
+    $sql = "SELECT orders.`orderId`, `dishId`, dish.menuId FROM `dish`, `orders`, menuItem, ingredient WHERE orders.orderId = 12 AND dish.orderId = orders.orderId and dish.menuId = menuitem.menuItemId;";
+    //partial sql statement, not done or working rn
     /* 
      * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
      * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template

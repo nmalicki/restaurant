@@ -20,6 +20,7 @@ if ($result->num_rows == 1) {
 
             
               //setting session values
+            $_SESSION["customerId"] = $row["customerId"];
               $_SESSION['email'] = $row["email"];
               $_SESSION['givenName'] = $row["givenName"];
               $_SESSION['familyName'] = $row["familyName"];

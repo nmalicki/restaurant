@@ -51,10 +51,12 @@ button{
     border: 0px;
     margin-bottom: 5px;
     background-color: var(--background);
+    cursor: pointer;
 }
 
 .buttonLink{
     text-decoration: none;
+    cursor: pointer;
 }
 
 .buttonLink:link, .buttonLink:visited{

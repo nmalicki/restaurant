@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2024 at 05:43 PM
+-- Generation Time: Apr 28, 2024 at 09:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,11 +41,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerId`, `email`, `password`, `givenName`, `familyName`, `paymentInfo`) VALUES
-(11, 'test@gmail.com', '$2y$10$GmH3sBfiA3BDCW6d3bEayu6Wex52v6kSvImqG8HwAotBpTVVHFw5y', 'Test', 'Test1', 0),
-(14, 'test1@gmail.com', '$2y$10$BlA7kSmBbt8uB1cQXPx8eeuzqi3ZqK7qud8JoGip8nC8JMX9T0WK6', 'Nathan', 'Malicki', 0),
-(15, 'test2@gmail.com', '$2y$10$m3XkC7npEXoC5x2fqb0hBuTTY7KCng14FihIKXU0nJxxtKu4aPWgK', 'Nathan', 'Malicki', 0),
-(16, '', '$2y$10$QUFkVOk5NwW.Vje9eAtTteHF7yy5yClPdLWsvP.3uh6DgEr1EnMgu', '', '', 0),
-(18, 'test5@gmail.com', '$2y$10$1CMnpABNVnJzXU2eu5P88et8RGBjJKMQzSPtVw.HWAn2Ywtglovq2', 'nathan', 'Malicki', 0);
+(22, 'new@gmail.com', '$2y$10$4HjojfqVaZLdbcb7VTXygeIGjQ8gwN93iYtRc7aWfkE7QqVLxJpH.', 'Nathan', 'Malicki', 0);
 
 -- --------------------------------------------------------
 
@@ -55,10 +51,44 @@ INSERT INTO `customer` (`customerId`, `email`, `password`, `givenName`, `familyN
 
 CREATE TABLE `dish` (
   `dishId` int(11) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `price` decimal(4,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
   `menuId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dish`
+--
+
+INSERT INTO `dish` (`dishId`, `price`, `quantity`, `orderId`, `menuId`) VALUES
+(1, 12.99, 0, 1, 3),
+(13, 99.99, 1, 5, 1),
+(14, 99.99, 1, 7, 1),
+(15, 99.99, 1, 7, 1),
+(16, 99.99, 1, 7, 1),
+(17, 99.99, 1, 8, 1),
+(18, 99.99, 1, 9, 1),
+(19, 99.99, 1, 9, 1),
+(20, 99.99, 1, 10, 1),
+(21, 99.99, 1, 11, 1),
+(22, 99.99, 1, 12, 1),
+(23, 10.00, 1, 12, 1),
+(24, 10.00, 1, 12, 1),
+(25, 10.00, 1, 12, 1),
+(26, 10.00, 1, 12, 1),
+(27, 10.00, 1, 12, 1),
+(28, 10.00, 1, 12, 1),
+(29, 10.00, 1, 12, 1),
+(30, 10.00, 1, 12, 1),
+(31, 10.00, 1, 12, 1),
+(32, 10.00, 1, 12, 1),
+(33, 10.00, 1, 12, 1),
+(34, 10.00, 1, 12, 1),
+(35, 10.00, 1, 12, 1),
+(36, 10.00, 1, 12, 1),
+(37, 10.00, 1, 12, 1),
+(38, 10.00, 1, 12, 2);
 
 -- --------------------------------------------------------
 
@@ -71,6 +101,23 @@ CREATE TABLE `dishmenuingredient` (
   `dishId` int(11) NOT NULL,
   `menuingredientId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dishmenuingredient`
+--
+
+INSERT INTO `dishmenuingredient` (`dishingredientId`, `dishId`, `menuingredientId`) VALUES
+(1, 1, 10),
+(3, 34, 3),
+(4, 34, 5),
+(5, 35, 3),
+(6, 35, 5),
+(7, 36, 3),
+(8, 36, 5),
+(9, 37, 3),
+(10, 37, 5),
+(11, 38, 7),
+(12, 38, 8);
 
 -- --------------------------------------------------------
 
@@ -96,9 +143,33 @@ CREATE TABLE `employee` (
 CREATE TABLE `ingredient` (
   `ingredientId` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `price` decimal(4,2) NOT NULL,
   `inStock` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ingredient`
+--
+
+INSERT INTO `ingredient` (`ingredientId`, `name`, `price`, `inStock`) VALUES
+(1, 'Beef Patty', 1.99, 1),
+(2, 'American Cheese', 0.25, 1),
+(3, 'Hamburger Bun', 0.50, 1),
+(4, 'White Bread', 0.10, 1),
+(5, 'Butter', 0.05, 1),
+(6, 'Shredded Parmesan Cheese', 1.50, 1),
+(7, 'Pizza Sauce', 5.99, 1),
+(8, 'Pizza Dough', 5.00, 1),
+(9, 'Pepperoni', 0.50, 1),
+(10, 'Chicken ', 3.99, 1),
+(11, 'French Fries', 2.99, 1),
+(12, 'Hot Dog', 2.99, 1),
+(13, 'Hot Dog Bun', 0.50, 1),
+(14, 'Ketchup', 0.00, 1),
+(15, 'Mustard', 0.00, 1),
+(16, 'Pickles', 0.50, 0),
+(17, 'Onion', 0.15, 1),
+(18, 'Macaroni', 1.99, 1);
 
 -- --------------------------------------------------------
 
@@ -140,6 +211,34 @@ CREATE TABLE `menuingredient` (
   `ingredientId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `menuingredient`
+--
+
+INSERT INTO `menuingredient` (`menuIngredientId`, `includedByDefault`, `extraCharge`, `menuItemId`, `ingredientId`) VALUES
+(3, 1, 0, 1, 1),
+(5, 1, 0, 1, 3),
+(6, 0, 0, 1, 2),
+(7, 1, 0, 2, 4),
+(8, 1, 0, 2, 2),
+(10, 1, 0, 4, 8),
+(11, 1, 0, 4, 7),
+(12, 1, 0, 4, 6),
+(13, 0, 1, 4, 9),
+(14, 1, 0, 3, 10),
+(15, 1, 0, 3, 11),
+(16, 0, 0, 1, 14),
+(17, 0, 0, 1, 15),
+(18, 1, 0, 5, 12),
+(19, 1, 0, 5, 13),
+(20, 1, 0, 5, 14),
+(21, 1, 0, 5, 15),
+(23, 0, 0, 1, 16),
+(24, 0, 0, 1, 17),
+(25, 0, 0, 5, 17),
+(26, 1, 0, 6, 18),
+(27, 1, 0, 6, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -148,10 +247,22 @@ CREATE TABLE `menuingredient` (
 
 CREATE TABLE `menuitem` (
   `menuItemId` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `basePrice` decimal(10,0) NOT NULL,
+  `menuItemName` varchar(32) NOT NULL,
+  `basePrice` decimal(4,2) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `menuitem`
+--
+
+INSERT INTO `menuitem` (`menuItemId`, `menuItemName`, `basePrice`, `description`) VALUES
+(1, 'Hamburger', 4.99, 'Beef patty on a bun'),
+(2, 'Grilled Cheese', 3.99, 'Bread and Cheese'),
+(3, 'Chicken Tenders', 5.99, 'Crispy chicken tenders served with a side of fries.'),
+(4, 'Pizza', 12.99, '18\" pizza made with fresh cheese, tomato, and hand-tossed dough.'),
+(5, 'Hot Dog', 2.99, 'Hot Dog on a bun with your choice of toppings'),
+(6, 'Mac and Cheese', 5.99, 'Elbow pasta with freshly grated cheese and breadcrumbs.');
 
 -- --------------------------------------------------------
 
@@ -162,9 +273,26 @@ CREATE TABLE `menuitem` (
 CREATE TABLE `orders` (
   `orderId` int(11) NOT NULL,
   `date` date NOT NULL,
-  `customerId` int(11) NOT NULL,
-  `locationId` int(11) NOT NULL
+  `ordered` tinyint(1) NOT NULL,
+  `completed` tinyint(1) NOT NULL,
+  `customerId` int(11) DEFAULT NULL,
+  `locationId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderId`, `date`, `ordered`, `completed`, `customerId`, `locationId`) VALUES
+(1, '2024-04-22', 0, 0, 22, 1),
+(3, '2024-04-28', 0, 0, 22, 1),
+(5, '0000-00-00', 0, 0, NULL, NULL),
+(7, '0000-00-00', 0, 0, NULL, NULL),
+(8, '2024-04-28', 0, 0, NULL, NULL),
+(9, '2024-04-28', 0, 0, NULL, NULL),
+(10, '2024-04-28', 0, 0, NULL, NULL),
+(11, '2024-04-28', 0, 0, NULL, NULL),
+(12, '2024-04-28', 0, 0, 22, NULL);
 
 --
 -- Indexes for dumped tables
@@ -182,16 +310,16 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `dish`
   ADD PRIMARY KEY (`dishId`),
-  ADD UNIQUE KEY `orderId` (`orderId`),
-  ADD UNIQUE KEY `menuId` (`menuId`);
+  ADD KEY `orderId` (`orderId`) USING BTREE,
+  ADD KEY `menuId` (`menuId`) USING BTREE;
 
 --
 -- Indexes for table `dishmenuingredient`
 --
 ALTER TABLE `dishmenuingredient`
   ADD PRIMARY KEY (`dishingredientId`),
-  ADD UNIQUE KEY `dishId` (`dishId`,`menuingredientId`),
-  ADD KEY `menuingredientId` (`menuingredientId`);
+  ADD KEY `menuingredientId` (`menuingredientId`),
+  ADD KEY `dishId` (`dishId`,`menuingredientId`) USING BTREE;
 
 --
 -- Indexes for table `employee`
@@ -217,8 +345,8 @@ ALTER TABLE `location`
 ALTER TABLE `menuingredient`
   ADD PRIMARY KEY (`menuIngredientId`),
   ADD UNIQUE KEY `menuId` (`menuItemId`,`ingredientId`),
-  ADD UNIQUE KEY `menuItemId` (`menuItemId`),
-  ADD KEY `ingredientId` (`ingredientId`);
+  ADD KEY `ingredientId` (`ingredientId`),
+  ADD KEY `menuItemId` (`menuItemId`) USING BTREE;
 
 --
 -- Indexes for table `menuitem`
@@ -231,8 +359,8 @@ ALTER TABLE `menuitem`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderId`),
-  ADD UNIQUE KEY `customerId` (`customerId`),
-  ADD UNIQUE KEY `locationId` (`locationId`);
+  ADD KEY `customerId` (`customerId`) USING BTREE,
+  ADD KEY `locationId` (`locationId`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -242,19 +370,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `dishId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dishId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `dishmenuingredient`
 --
 ALTER TABLE `dishmenuingredient`
-  MODIFY `dishingredientId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dishingredientId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -266,7 +394,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ingredientId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ingredientId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `location`
@@ -278,19 +406,19 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `menuingredient`
 --
 ALTER TABLE `menuingredient`
-  MODIFY `menuIngredientId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `menuIngredientId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `menuItemId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `menuItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

@@ -7,24 +7,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : nmalicki
 */
 
-#accountContainer{
+#accountForm{
     width: 65%;
-    height: 80%;
-    
-    position: absolute;
+    margin-left:20%;
 
-    bottom: 10%;
-    left: 20%;
-    
-    
-    background-color: var(--main);
-    border: solid black 2px;
-    border-radius: 35px;
-    
     padding: 15px;
+    padding-top:5%;
 }
 
-#accountContainerClose{
-    width: 30px;
-    margin-left: 95%;
+#signOutForm{
+    width:65%;
+    margin-left:21%;
 }

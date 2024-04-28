@@ -53,12 +53,13 @@ button.menuOrderButton{
 
 .superDiv{
     display: flex;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 .rightmenu{
     width: 60%;
     margin-left: 2%;
     margin-top: 1%;
+    margin-right: 5%;
 }
 
 .menuIm{
@@ -66,15 +67,54 @@ button.menuOrderButton{
     height: 40vh;
 }
 
+.quantDiv{
+    display: flex;
+}
+
+.quantDiv input{
+    height: 35px;
+    width: 100px;
+    text-align: center;
+}
+
+.ingredientsDiv{
+    width: 100%;
+}
+
+.toggleButton{
+    width: 100%;
+    height: 35px;
+    border-radius: 35px;
+    border: 1px solid black;
+    display: block;
+    user-select:none;
+    text-align: center;
+    padding-top: 1.5%;
+    box-sizing:border-box; 
+    margin-bottom: 1%;
+    cursor: pointer;
+}
+
+.toggleButton:has(.toggleBox:checked){
+    background-color: var(--background);
+       
+}
+
+.toggleButton:has(.toggleBox:not(:checked)){
+    background-color: var(--main);
+}
+
 .regularMenu{
     display: block;
-    width: 40%;
+    width: 100%;
     border: 1px solid black;
     background-color: var(--background);
 }
 
 .outOfStock{
     border-color: var(--selected);
+    color: var(--selected);
+    cursor:not-allowed;
 }
 .included{}
 .notIncluded{
@@ -85,4 +125,19 @@ button.menuOrderButton{
     background-color: var(--main);
 }
 
+input[type="submit"]{
+    cursor: pointer;
+}
 
+.toggleBox{
+    display: none;
+}
+
+#resetButton{
+    width: 15%;
+    cursor: pointer;
+}
+
+.postInput{
+    display: none;
+}
