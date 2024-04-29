@@ -21,18 +21,20 @@ if ($result->num_rows == 1) {
             
               //setting session values
             $_SESSION["customerId"] = $row["customerId"];
-              $_SESSION['email'] = $row["email"];
-              $_SESSION['givenName'] = $row["givenName"];
-              $_SESSION['familyName'] = $row["familyName"];
-              $_SESSION['paymentInfo'] = $row["paymentInfo"];
-              $exportEmail = json_encode($_SESSION["email"]);
-              $exportName = json_encode($_SESSION["givenName"]);
-              $exportFamilyName = json_encode($_SESSION["familyName"]);
-              $exportPayment = json_encode($_SESSION["paymentInfo"]);
+            $_SESSION['email'] = $row["email"];
+            $_SESSION['givenName'] = $row["givenName"];
+            $_SESSION['familyName'] = $row["familyName"];
+            $_SESSION['paymentInfo'] = $row["paymentInfo"];
+            $exportEmail = json_encode($_SESSION["email"]);
+            $exportName = json_encode($_SESSION["givenName"]);
+            $exportFamilyName = json_encode($_SESSION["familyName"]);
+            $exportPayment = json_encode($_SESSION["paymentInfo"]);
+            
+            checkOrCreateOrder();
 
               
               
-              echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; signedIn( '". $row["givenName"] ."'); </script>"; 
+             echo "<script type='text/javascript'> email= $exportEmail; givenName = $exportName;  familyName = $exportFamilyName; paymentInfo = $exportPayment; signedIn( '". $_SESSION['givenName'] ."'); </script>"; 
         } else {
             echo "<h1 class='logInFeedback'>Invalid username or password.</h1>";
             echo "<a class='logLink backLink' href='index.php'>< Back</a>";

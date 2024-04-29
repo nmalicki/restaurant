@@ -26,7 +26,16 @@
     </div>
 
     <div id="signInContainer">
-<?php include 'customer/signInPopUp.php'; ?>
+<?php include 'customer/signInPopUp.php'; 
+    if(isset($_SESSION['numDishes']) == false){
+        $_SESSION['numDishes'] = 0;
+    }
+    echo "<script>numDishes = " . $_SESSION['numDishes'] . ";</script>";
+    if(isset($_SESSION['orderId'])){
+        echo "<script>console.log('orderId set');</script>";
+    }
+    
+?>
     </div>
 
 </nav>

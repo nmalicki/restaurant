@@ -2,11 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
-var cart = sessionStorage.getItem("cart");
-if (cart == null) {
-    cart = "";
-    sessionStorage.setItem("cart", cart);
-}
 
 var userLat = sessionStorage.getItem("lat");
 var userLong = sessionStorage.getItem("long");
@@ -90,8 +85,9 @@ function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodataso
     }
 }
 
-function setRestaurant(location) {
-    sessionStorage.setItem("setRestaurant", location);
+function storeRestaurant(i) {
+    sessionStorage.setItem("setRestaurant", jsonLocations[i]);
+    //change button class as well
     console.log("Location set to", sessionStorage.getItem("setRestaurant"));
 }
 
@@ -119,11 +115,25 @@ function locationElementMaker() {
 
         let setRestaurantButton = document.createElement("button");
         setRestaurantButton.innerHTML = "Order Here";
-
-        setRestaurantButton.setAttribute("onclick", "setRestaurant('" + thisLocation + "')"); //***setting to last location in array***
+        
+        temp = thisLocation;
+        setRestaurantButton.setAttribute("onclick", "storeRestaurant(" + temp[i] + ")");
         setRestaurantButton.className = "aLocation";
-
-        div.appendChild(setRestaurantButton);
+        
+        let form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "locationAction.php");
+        form.className = "locationForm";
+        form.appendChild(setRestaurantButton);
+        
+        hidden = document.createElement("input");
+        hidden.className = "hidden";
+        hidden.value = thisLocation;
+        hidden.name = "set_location";
+        
+        form.appendChild(hidden);
+        
+        div.appendChild(form);
 
         document.getElementById("mountingDiv").appendChild(div);
     }
@@ -132,7 +142,7 @@ function locationElementMaker() {
 }
 
 function goToMenuItem(menuItemId) {
-    console.log(menuItemId);
+    //console.log(menuItemId);
     window.location.href = "http://localhost/restaurant/menuItem.php?Id=" + menuItemId
 }
 
@@ -201,14 +211,6 @@ function unsavedAccountChanges() {
 
 
 function addToCart(item) { //session storage is not storing between pages
-    cart = sessionStorage.getItem("cart");
-    if (cart == "") {
-        cart = item;
-        sessionStorage.setItem("cart", cart);
-    } else {
-        cart += ", " + item;
-        sessionStorage.setItem("cart", cart);
-    }
     updateCartButton();
     //redirect back to index
 }
@@ -280,26 +282,6 @@ function menuItem(ingredients) { //switch buttons to toggle buttons https://stac
 
         thisLabel.appendChild(thisCheckBox);
         ing.appendChild(thisLabel);
-
-        /*
-         let thisButton = document.createElement("button");
-         thisButton.className = "regularMenu";
-         thisButton.id = thisIngredient[3];
-         thisButton.setAttribute("onclick",  "toggleButton('" + thisIngredient[3] + "')");
-         thisButton.innerHTML = thisIngredient[3];
-         thisButton.setAttribute("type", "button");
-         if(thisIngredient[4] == 0){ //out of stock
-         thisButton.className += " outOfStock";
-         thisButton.disabled = true;
-         }
-         if(thisIngredient[5] == 0){ //not included
-         thisButton.className += " notIncluded"
-         }
-         if(thisIngredient[6] == 1){ //extra charge
-         thisButton.className += " extra";
-         thisButton.innerHTML += " +$";
-         }
-         ing.appendChild(thisButton);   */
     }
     let plusB = document.getElementById("plus");
     plusB.setAttribute("onclick", "increase()");
@@ -310,26 +292,48 @@ function menuItem(ingredients) { //switch buttons to toggle buttons https://stac
 
 function updateCartButton() {
     button = document.getElementById("cartButton");
-    cart = sessionStorage.getItem("cart");
-    cart = cart.split(",");
-    if (cart.length > 0) {
-        if (cart[0].localeCompare('') === 0) {
-            button.innerHTML = "Cart";
-        } else {
-            button.innerHTML = "Cart (" + cart.length + ")";
-        }
-    } else {
-        console.log(cart, "cart is empty");
+    try{
+        button.innerHTML = "Cart (" + numDishes + ")";
+    }
+    catch(ReferenceError){
+        button.innerHTML = "Cart";
     }
 }
 
 
 function populateCart() {
-    cart = sessionStorage.getItem("cart");
-    p = document.getElementById("cartList");
-    if (cart === null || cart === "") {
+    div = document.getElementById("cartList");
+    h = document.createElement("h3");
+    h.innerHTML = "Number of Items: " + cart.length/2;
+    div.appendChild(h);
+    if (cart === null) {
+        let p = document.createElement("p");
         p.innerHTML = "Cart is empty";
+        div.appendChild(p);
     } else {
-        p.innerHTML = cart;
+        for(i = 0; i < cart.length; i+=2){
+            let subDiv = document.createElement("div");
+            subDiv.className = "cartSubDiv";
+            let p = document.createElement("p");
+            p.innerHTML = cart[i];
+            subDiv.appendChild(p);
+            let inp = document.createElement("input");
+            inp.value = cart[i+1];
+            inp.className = "smallInput";
+            subDiv.appendChild(inp);
+            
+            div.appendChild(subDiv);
+        }
     }
+    
+    let locationDiv = document.getElementById("locationInfo");
+    let locationP = document.createElement("h3");
+    locationP.className = "locationP";
+    try{
+        locationP.innerHTML = cartLocation.split(",")[1];
+    }
+    catch(ReferenceError){
+        locationP.innerHTML = "No location set";
+    }
+    locationDiv.appendChild(locationP);
 }

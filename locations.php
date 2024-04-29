@@ -7,6 +7,7 @@
     <body>
         
         <h1>Locations</h1>
+        
         <div id="mountingDiv"></div>
         <?php
         //db call to get information and number of locations

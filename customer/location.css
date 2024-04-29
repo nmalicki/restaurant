@@ -50,3 +50,16 @@ button.aLocation{
     margin-top: 1%;
     background-color: var(--accent);
 }
+
+
+.locationForm{
+    width: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+.locationP{
+    margin-left: 5%;
+}

@@ -31,6 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 #cart{
     width:55%;
+    overflow-y: scroll;
 }
 #totals{
     width: 35%;
@@ -38,4 +39,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 #locationInfo{
     margin-left: 13%;
     width: 82%;
+}
+
+.cartSubDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 2%;
+    border-bottom: 2px solid black; 
+}
+
+.smallInput{
+    width: 10%;
+    border: 1px solid black ;
+    background-color: var(--main);
+    margin-top:2%;
 }

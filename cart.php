@@ -3,12 +3,40 @@
     <?php
     include "header.php";
     require "shared/dbConnect.php";
-    $sql = "SELECT orders.`orderId`, `dishId`, dish.menuId FROM `dish`, `orders`, menuItem, ingredient WHERE orders.orderId = 12 AND dish.orderId = orders.orderId and dish.menuId = menuitem.menuItemId;";
-    //partial sql statement, not done or working rn
-    /* 
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
-     */
+    
+    if(isset($_SESSION['orderId']) == false){
+        $sql ="SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'restaurant' AND TABLE_NAME  = 'orders';";
+        $result = queryDb($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $orderId = $row['AUTO_INCREMENT'];
+            }
+        } else {
+            echo "0 results";
+        }
+        $_SESSION['orderId'] = $orderId;
+    }
+    
+    
+    $sql = "SELECT menuItemName, dish.quantity FROM dish, orders, menuItem WHERE orders.orderId = " . $_SESSION['orderId'] . " AND dish.orderId = orders.orderId and dish.menuId = menuitem.menuItemId;";
+    $result = queryDb($sql);
+    $dishes = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            array_push($dishes, $row["menuItemName"], $row["quantity"]);
+        }
+    }
+    
+    $dishesJson = json_encode($dishes);
+    echo "<script> cart = $dishesJson;</script>";
+    
+    if(isset($_SESSION['location'])){
+        $locationJson = json_encode($_SESSION['location']);
+    echo "<script> cartLocation = $locationJson;</script>";
+    }
+    else{
+        //create button that sends them to location page
+    }
 
     ?>
 </head>

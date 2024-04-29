@@ -6,36 +6,7 @@ require "shared/dbConnect.php";
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 //setting session information if not set already
-if(isset($_SESSION['orderId']) == false){
-    echo "here <br>";
-    if(isset($_SESSION['customerId'])){
-        $customerId = $_SESSION['customerId'];
-    }
-    else{
-        $customerId = "Null";
-    }
-    if(isset($_SESSION['location'])){
-        $location = $_SESSION['location'];
-    }
-    else{
-        $location = "Null";
-    }
-    $sql ="SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'restaurant' AND TABLE_NAME  = 'orders';";
-    $result = queryDb($sql);
-    $locations = array();
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $orderId = $row['AUTO_INCREMENT'];
-        }
-    } else {
-        echo "0 results";
-    }
-    $_SESSION['orderId'] = $orderId;
-    
-    $sql = "INSERT INTO `orders` (`orderId`, `date`, `customerId`, `locationId`) VALUES (" . $_SESSION['orderId'] . ", '" . date("Y-m-d") . "', " . $customerId  . ", " . $location . ");";
-    $result = modifyDb($sql);
-    
-}
+checkOrCreateOrder();
 
 
 //getting info from the form
@@ -61,13 +32,13 @@ if ($result->num_rows > 0) {
 
 
 $dishName = $_POST['dishName'];
-echo "Dish name: " . $dishName . "<br>";
+//echo "Dish name: " . $dishName . "<br>";
 
 $quantity = $_POST['quantity'];
-echo "Quantity: " . $quantity . "<br>";
+//echo "Quantity: " . $quantity . "<br>";
 
 $numIngredients = $_POST['numIngredients'];
-echo "numIngredients: " . $numIngredients . "<br>";
+//echo "numIngredients: " . $numIngredients . "<br>";
 
 
 
@@ -105,6 +76,7 @@ for($i = 0; $i < sizeof($dishIngredients); $i+=1){
     $result = modifyDb($sql);
 }
 
+$_SESSION['numDishes'] += 1;
 
 
 
@@ -113,8 +85,8 @@ for($i = 0; $i < sizeof($dishIngredients); $i+=1){
 
 
 //redirect when getting stuff in db works
-//header("Location: index.php");
-//die();
+header("Location: index.php");
+die();
 ?>
 
 
