@@ -19,7 +19,7 @@ $result = queryDB($sql);
 $ingredients = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        array_push($ingredients, array($row["menuItemName"], $row["basePrice"], $row["description"], $row["name"], $row["inStock"], $row["includedByDefault"], $row["extraCharge"], $row["menuItemId"], $row["ingredientId"], $row["menuIngredientId"]));
+        array_push($ingredients, array($row["menuItemName"], $row["basePrice"], $row["description"], $row["name"], $row["inStock"], $row["includedByDefault"], $row["extraCharge"], $row["menuItemId"], $row["ingredientId"], $row["menuIngredientId"], $row['price']));
         //echo "<p>" . $row['menuItemName'] . $row['basePrice'] .  $row['description'] . $row['name'] . $row['inStock'] . "</p>";
     }
     $ingredientsJson = json_encode($ingredients);
@@ -41,12 +41,15 @@ $numIngredients = $_POST['numIngredients'];
 //echo "numIngredients: " . $numIngredients . "<br>";
 
 
-
+$price = $ingredients[0][1] * $quantity;
 $dishIngredients = [];
 $i = 0;
 for($i = 0; $i < $numIngredients; $i += 1){
     if(isset($_POST['dish' . $i])){
         array_push($dishIngredients , $ingredients[$i]);
+        if($ingredients[$i][6]){
+            $price += $ingredients[$i][10];
+        }
 
     }
     else{
@@ -54,7 +57,7 @@ for($i = 0; $i < $numIngredients; $i += 1){
     }
 }
 
-$price = 10; //calculate cost of dish
+ //calculate cost of dish
 //make dish object
 echo "orderId: " . $_SESSION['orderId'] . "<br>";
 $sql = "INSERT INTO `dish`(`dishId`, `price`, `quantity`, `orderId`, `menuId`) VALUES (0,  $price, $quantity, " . $_SESSION['orderId'] . ", " . $ingredients[0][7] . ");";

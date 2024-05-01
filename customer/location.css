@@ -38,9 +38,11 @@ div.mapDiv{
 
 p.aLocation{
     width: 100%;
-    height: 2%;
+    height: 4%;
     margin: 0;
+    margin-bottom: 1%;
     margin-left: 5%;
+    padding: 1%;
     display: inline;
 }
 
@@ -51,6 +53,9 @@ button.aLocation{
     background-color: var(--accent);
 }
 
+button.aLocation:disabled{
+    background-color: var(--selected);
+}
 
 .locationForm{
     width: 100%;

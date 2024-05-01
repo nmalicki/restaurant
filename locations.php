@@ -4,7 +4,7 @@
 
         <title>Restaurant: Locations</title>
     </head>
-    <body>
+    <body onload="selectedLocation()">
         
         <h1>Locations</h1>
         

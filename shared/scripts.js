@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
-
+const cartDivisor = 4;
 var userLat = sessionStorage.getItem("lat");
 var userLong = sessionStorage.getItem("long");
 if (userLat == null) {
@@ -26,7 +26,7 @@ function signInResgisterToggle(s) {
     registerForm = document.getElementById("registerForm");
     signInForm = document.getElementById("signInForm");
     registerButton = document.getElementById("registerButton");
-    signInButton = document.getElementById("signInFormButton")
+    signInButton = document.getElementById("signInFormButton");
 
     if (window.getComputedStyle(signInForm, null).display === "none" && s != "r") {
         registerForm.style.display = "none";
@@ -86,9 +86,11 @@ function mapDistance(lat1, lon1, lat2, lon2, unit) {//from https://www.geodataso
 }
 
 function storeRestaurant(i) {
-    sessionStorage.setItem("setRestaurant", jsonLocations[i]);
-    //change button class as well
-    console.log("Location set to", sessionStorage.getItem("setRestaurant"));
+    for(j = 0; j < jsonLocations.length; j++){
+        if(parseInt(jsonLocations[j][0]) === i){
+            sessionStorage.setItem("setRestaurant", jsonLocations[j]);
+        }
+    }
 }
 
 function locationElementMaker() {
@@ -117,12 +119,18 @@ function locationElementMaker() {
         setRestaurantButton.innerHTML = "Order Here";
         
         temp = thisLocation;
-        setRestaurantButton.setAttribute("onclick", "storeRestaurant(" + temp[i] + ")");
+        setRestaurantButton.setAttribute("onclick", "storeRestaurant(" + temp[0] + ")"); //this line looks wrong to me
         setRestaurantButton.className = "aLocation";
+        setRestaurantButton.id = "setRestaurantButton" + temp[0];
+        
         
         let form = document.createElement("form");
         form.setAttribute("method", "POST");
-        form.setAttribute("action", "locationAction.php");
+        if(window.location.href === "http://localhost/restaurant/locations.php?redirectToCart=true"){
+            form.setAttribute("action", "locationAction.php?redirectToCart=true");
+        }else{
+            form.setAttribute("action", "locationAction.php");
+        }
         form.className = "locationForm";
         form.appendChild(setRestaurantButton);
         
@@ -228,7 +236,6 @@ function toggleButton(buttonName) {
 
 function increase() {
     counter = document.getElementById("quantCounter"); //this takes too long
-    console.log(counter);
     n = parseInt(counter.value);
     if (n < 5) {
         n += 1;
@@ -250,6 +257,7 @@ function decrease() {
 }
 
 function menuItem(ingredients) { //switch buttons to toggle buttons https://stackoverflow.com/questions/76837048/creating-the-simplest-html-toggle-button
+    console.log("menuItem");
     let ing = document.getElementById("ingredientsDiv");
     let addToCart = document.getElementById("addToCartButton");
     addToCart.setAttribute("onclick", "addToCart('" + "test" + "')");
@@ -272,7 +280,7 @@ function menuItem(ingredients) { //switch buttons to toggle buttons https://stac
         }
         if (thisIngredient[6] == 1) { //extra charge
             thisLabel.className += " extra";
-            thisLabel.innerHTML += " +$";
+            thisLabel.innerHTML += " +$" + thisIngredient[7];
         }
         if (thisIngredient[4] == 0) { //out of stock
             thisLabel.className = "toggleButton outOfStock";
@@ -293,7 +301,12 @@ function menuItem(ingredients) { //switch buttons to toggle buttons https://stac
 function updateCartButton() {
     button = document.getElementById("cartButton");
     try{
-        button.innerHTML = "Cart (" + numDishes + ")";
+        if(numDishes > 0){
+            button.innerHTML = "Cart (" + numDishes + ")";
+        }
+        else{
+            button.innerHTML = "Cart";
+        }
     }
     catch(ReferenceError){
         button.innerHTML = "Cart";
@@ -302,24 +315,29 @@ function updateCartButton() {
 
 
 function populateCart() {
+    let runningTotal = 0;
     div = document.getElementById("cartList");
     h = document.createElement("h3");
-    h.innerHTML = "Number of Items: " + cart.length/2;
+    h.innerHTML = "Number of Items: " + cart.length/cartDivisor;
     div.appendChild(h);
     if (cart === null) {
         let p = document.createElement("p");
         p.innerHTML = "Cart is empty";
         div.appendChild(p);
     } else {
-        for(i = 0; i < cart.length; i+=2){
+        for(i = 0; i < cart.length; i+=cartDivisor){
+            runningTotal += parseFloat(cart[i+2]);
             let subDiv = document.createElement("div");
             subDiv.className = "cartSubDiv";
             let p = document.createElement("p");
-            p.innerHTML = cart[i];
+            p.innerHTML = cart[i] + " $" + cart[i+2];
             subDiv.appendChild(p);
+            
             let inp = document.createElement("input");
             inp.value = cart[i+1];
             inp.className = "smallInput";
+            inp.setAttribute("type", "number");
+            inp.setAttribute("name", "cartInput" + i);
             subDiv.appendChild(inp);
             
             div.appendChild(subDiv);
@@ -335,5 +353,61 @@ function populateCart() {
     catch(ReferenceError){
         locationP.innerHTML = "No location set";
     }
+    
+    let totals =  document.getElementById("totalSubDiv");
+    
+    let totalP = document.createElement("p");
+    totalP.className = "totalInfo";
+    totalP.innerHTML = "Subtotal: " + runningTotal.toFixed(2);
+    totals.appendChild(totalP);
+    
+    let taxP = document.createElement("p");
+    taxP.innerHTML = "Tax(6.25%): " + (runningTotal * 0.0625).toFixed(2);
+    taxP.className = "totalInfo";
+    totals.appendChild(taxP);
+    
+    let totalh = document.createElement("h2");
+    totalh.innerHTML = "Final Total: " +  (runningTotal * 1.0625).toFixed(2);
+    totalh.className = "totalInfo";
+    totals.appendChild(totalh);
+    
+    
     locationDiv.appendChild(locationP);
+}
+
+function cleanUp(){
+    //clearList = [cart, numDishes, jsonDishes, dishes];
+    try{delete cart;} catch(ReferenceError){}
+    try{delete numDishes;} catch(ReferenceError){}
+    try{delete dishes;} catch(ReferenceError){}
+    try{delete order;} catch(ReferenceError){}
+    
+    updateCartButton();
+}
+
+function postOrderDisplay(orderDishes){
+    console.log(cartDivisor);
+    for(i = 0; i < orderDishes.length; i+=cartDivisor){
+        let div = document.getElementById("postOrderDiv" + i);
+        div.innerHTML = orderDishes[i+1] + "x " + orderDishes[i]+ "<br>";
+    }
+}
+
+function selectedLocation(){
+    for(i = 1; i < 5; i++){
+            try{
+                let button = document.getElementById("setRestaurantButton" + i);
+                button.disabled = false;
+            }
+            catch(TypeError){
+            }
+        }
+    id = sessionStorage.getItem("setRestaurant");
+    if (id === 'undefined' || id === null) {
+        console.log('no location');
+    }
+    else{
+        button = document.getElementById("setRestaurantButton" + id.split(",")[0]);
+        button.disabled = true;
+    }
 }

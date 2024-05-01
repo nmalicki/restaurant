@@ -92,12 +92,10 @@ function checkOrCreateOrder() {
                 $orderId = $row['AUTO_INCREMENT'];
             }
         }
-        $_SESSION['orderId'] = $orderId;
 
-        
-
-        $sql = "INSERT INTO `orders` (`orderId`, `date`, `customerId`, `locationId`) VALUES (" . $_SESSION['orderId'] . ", '" . date("Y-m-d") . "', " . $customerId . ", " . $location . ");";
+        $sql = "INSERT INTO `orders` (`orderId`, `date`, `customerId`, `locationId`) VALUES (" . $orderId . ", '" . date("Y-m-d") . "', " . $customerId . ", " . $location . ");";
         $result = modifyDb($sql);
+        $_SESSION['orderId'] = $orderId;
     } else {
         $sql = "UPDATE `orders` SET `customerId`= $customerId, `locationId` = $location WHERE orders.orderid =  " . $_SESSION['orderId'] . ";";
         $result = modifyDb($sql);

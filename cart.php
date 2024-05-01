@@ -4,29 +4,18 @@
     include "header.php";
     require "shared/dbConnect.php";
     
-    if(isset($_SESSION['orderId']) == false){
-        $sql ="SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'restaurant' AND TABLE_NAME  = 'orders';";
-        $result = queryDb($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $orderId = $row['AUTO_INCREMENT'];
-            }
-        } else {
-            echo "0 results";
-        }
-        $_SESSION['orderId'] = $orderId;
-    }
+    checkOrCreateOrder();
     
     
-    $sql = "SELECT menuItemName, dish.quantity FROM dish, orders, menuItem WHERE orders.orderId = " . $_SESSION['orderId'] . " AND dish.orderId = orders.orderId and dish.menuId = menuitem.menuItemId;";
+    $sql = "SELECT menuItemName, dish.quantity, dish.price, dish.dishId FROM dish, orders, menuItem WHERE orders.orderId = " . $_SESSION['orderId'] . " AND dish.orderId = orders.orderId and dish.menuId = menuitem.menuItemId;";
     $result = queryDb($sql);
     $dishes = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            array_push($dishes, $row["menuItemName"], $row["quantity"]);
+            array_push($dishes, $row["menuItemName"], $row["quantity"], $row['price'], $row['dishId']);
         }
     }
-    
+    $_SESSION['dishes'] = $dishes;
     $dishesJson = json_encode($dishes);
     echo "<script> cart = $dishesJson;</script>";
     
@@ -34,23 +23,37 @@
         $locationJson = json_encode($_SESSION['location']);
     echo "<script> cartLocation = $locationJson;</script>";
     }
-    else{
-        //create button that sends them to location page
+    if(isset($_SESSION['paymentInfo'])){
+        $payment = $_SESSION['paymentInfo'];
     }
+    else{
+        $payment = "";
+    }
+
 
     ?>
 </head>
 
 
 <body id="cartBody" onload="populateCart()">
-    <div>
+    <form action="orderAction.php" method="POST">
         <div id="split">
             <div id="cart" class="cartDiv">
                 <h1 class="cartH1">Cart</h1>
                 <p id="cartList" ><p/>
             </div>
-            <div id="totals" class="cartDiv"><h1 class="cartH1">Total</h1></div>
+            <div id="totals" class="cartDiv">
+                <h1 class="cartH1">Total</h1>
+                <div id="totalSubDiv"></div>
+                <div id="paymentDiv">
+                    <h3>Payment Info</h3>
+                    <input id="payInput" name="payment" type="number" value="<?php echo $payment?>" required></input>
+                </div>
+                    
+            </div>
         </div>
-        <div id="locationInfo" class="cartDiv"><h1 class="cartH1">Location</h1></div>
-    </div>
+        <div id="locationInfo" class="cartDiv"><h1 class="cartH1" maxLength="16">Location</h1></div>
+        
+        <button id="orderButton">Order</button>
+    </form>
 </body>

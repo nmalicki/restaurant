@@ -79,3 +79,28 @@ h1{
     border-top: 2px solid;  
     padding-top: 5px;
 }
+
+.logBackLink{
+    text-decoration: none;
+}
+
+.fakeButton{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 25px;
+    border-radius: 35px;
+    border: 0px;
+    margin-bottom: 5%;
+    padding-top: 6%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    cursor: pointer;
+    
+}
+
+.fakeButton:link, .fakeButton:visited{
+    color: var(--text);
+}

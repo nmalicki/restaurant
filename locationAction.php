@@ -11,8 +11,12 @@ $_SESSION['location'] = $location;
 
 checkOrCreateOrder();
 
-
-
 //change the db location of order
-header("Location: locations.php");
-die();
+if(isset($_GET['redirectToCart'])){
+    header("Location: cart.php");
+}
+else{
+    header("Location: locations.php");
+    
+}
+//die();

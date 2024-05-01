@@ -19,8 +19,8 @@
 
     </div>
     <div id="signInIsland">
-        <button><a class= "buttonLink" href="locations.php">Locations</a></button>
-        <button><a id="cartButton" class="buttonLink" href="cart.php">Cart</a></button>
+        <a class="fakeButton" href="locations.php">Locations</a>
+        <a id="cartButton" class="fakeButton" href="cart.php">Cart</a>
         <button id="signInButton" class="accentButton" onclick="signInPopUp()">Sign In</button>
         <button id="signOut"> Sign Out</button>
     </div>

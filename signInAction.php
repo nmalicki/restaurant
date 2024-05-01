@@ -19,7 +19,7 @@ if ($result->num_rows == 1) {
             echo "<a class='logLink backLink' href='index.php'>Home</a>";
 
             
-              //setting session values
+            //setting session values
             $_SESSION["customerId"] = $row["customerId"];
             $_SESSION['email'] = $row["email"];
             $_SESSION['givenName'] = $row["givenName"];

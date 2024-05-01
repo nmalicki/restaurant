@@ -35,6 +35,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 #totals{
     width: 35%;
+    position: relative;
 }
 #locationInfo{
     margin-left: 13%;
@@ -53,4 +54,55 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     border: 1px solid black ;
     background-color: var(--main);
     margin-top:2%;
+}
+
+.totalInfo{
+    margin-right:5%; 
+    text-align: right;
+}
+
+#orderButton{
+    width: 20%;
+    height: 7%; 
+    background-color: var(--accent);
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+}
+
+#paymentDiv{
+    position: absolute;
+    bottom: 3%;
+    left: 10%; 
+}
+
+#payInput{
+    background-color: var(--main);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+h1.orderConfim{
+    text-align: center;
+}
+
+.postOrderDiv{
+    text-align: center;
+    padding: 1%;
+    width: 20%;
+    margin: 2% 4%;
+    margin-top: 0%;
+    margin-left:45%;
+    border: 2px solid black; 
+    border-radius: 10rem;
 }

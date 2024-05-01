@@ -54,6 +54,11 @@ button.menuOrderButton{
 .superDiv{
     display: flex;
     margin-left: 15%;
+    width: 80%;
+}
+
+.leftMenu{
+    
 }
 .rightmenu{
     width: 60%;
@@ -96,12 +101,14 @@ button.menuOrderButton{
 }
 
 .toggleButton:has(.toggleBox:checked){
-    background-color: var(--background);
+    background-color: var(--accent);
+    color: white;
        
 }
 
 .toggleButton:has(.toggleBox:not(:checked)){
     background-color: var(--main);
+    color: black;
 }
 
 .regularMenu{
